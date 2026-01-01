@@ -110,7 +110,18 @@ const MoonMap = ({ date, calculationTrigger, selectedCity, highlightSharedNightC
                 workerRef.current = null;
             }
         };
-    }, [calculationTrigger, onRenderComplete]);
+    }, []); // Empty dependency array - only run on mount/unmount
+
+    // Reset lastRenderedTrigger when component mounts or calculationTrigger changes
+    // This prevents issues with consecutive PDF exports where trigger counter resets
+    useEffect(() => {
+        // If we see a calculationTrigger that's less than what we've already rendered,
+        // it means we're starting a new export cycle, so reset
+        if (calculationTrigger > 0 && calculationTrigger < lastRenderedTrigger.current) {
+            console.log(`[MoonMap ${instanceId.current}] Resetting lastRenderedTrigger from ${lastRenderedTrigger.current} to -1 (new export cycle detected)`);
+            lastRenderedTrigger.current = -1;
+        }
+    }, [calculationTrigger]);
 
     useEffect(() => {
         const calculateGrid = async () => {

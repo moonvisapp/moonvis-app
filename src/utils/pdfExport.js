@@ -49,7 +49,6 @@ export async function captureMapAsImage(mapContainer) {
  */
 export async function generateLunarCalendarPDF(calendarData, captureMapCallback, onProgress, checkCancelled) {
     console.log('--- STARTING PDF EXPORT DEBUG ---');
-    console.time('Total Export Duration');
 
     if (!calendarData || !calendarData.months) {
         throw new Error('Invalid calendar data provided for PDF generation.');

@@ -205,6 +205,10 @@ function LunarCalendarModal({ isOpen, onClose, initialDate, initialLocation, onV
             isExportCancelledRef.current = false;
             exportTriggerCounter.current = 0;
 
+            // Add a timestamp to force the hidden MoonMap to completely remount
+            // This ensures clean state between consecutive exports
+            const exportTimestamp = Date.now();
+
             setIsExportingPDF(true);
             setExportProgress('Preparing export...');
             setExportProgressPercentage(0);
@@ -424,7 +428,8 @@ function LunarCalendarModal({ isOpen, onClose, initialDate, initialLocation, onV
                         date: date,
                         location: calendarData.location,
                         trigger: ++exportTriggerCounter.current,
-                        highlightSharedNightCells: options.highlightSharedNightCells || null
+                        highlightSharedNightCells: options.highlightSharedNightCells || null,
+                        exportTimestamp: exportTimestamp // Force remount on new export
                     });
                 });
             };
@@ -794,6 +799,7 @@ function LunarCalendarModal({ isOpen, onClose, initialDate, initialLocation, onV
                 {/* Only render if we have valid params to avoid errors on init */}
                 {exportMapParams && (
                     <MoonMap
+                        key={exportMapParams.exportTimestamp} // Force remount on each export
                         wrapperRef={hiddenMapWrapperRef}
                         date={exportMapParams.date}
                         selectedCity={exportMapParams.location}
