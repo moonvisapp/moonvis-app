@@ -368,22 +368,34 @@ function LunarCalendarModal({ isOpen, onClose, initialDate, initialLocation, onV
 
             // Callback for capturing already-calculated maps
             const captureMapCallback = async (date, options = {}) => {
+                const startTime = performance.now();
+                const dateLabel = date.toISOString().split('T')[0];
+                console.log(`[Phase 2] Starting capture for ${dateLabel}, trigger ${exportTriggerCounter.current + 1}`);
+
                 return new Promise((resolve) => {
                     let timeoutId;
 
                     const completeWithTimeout = (result) => {
                         if (timeoutId) clearTimeout(timeoutId);
+                        const elapsed = (performance.now() - startTime).toFixed(2);
+                        if (result) {
+                            console.log(`[Phase 2] ✓ Captured ${dateLabel} in ${elapsed}ms`);
+                        } else {
+                            console.error(`[Phase 2] ✗ Failed to capture ${dateLabel} after ${elapsed}ms`);
+                        }
                         resolve(result);
                     };
 
                     timeoutId = setTimeout(() => {
-                        console.warn('[Phase 2] Map capture timed out for', date);
+                        const elapsed = (performance.now() - startTime).toFixed(2);
+                        console.warn(`[Phase 2] ⏱ Map capture timed out for ${dateLabel} after ${elapsed}ms`);
                         pendingExportResolve.current = null;
                         completeWithTimeout(null);
-                    }, 60000); // Increased from 30000ms to 60000ms (1 minute safety buffer)
+                    }, 10000); // Reduced from 60000ms to 10000ms (10 seconds) - should be instant for cached maps
 
                     // Capture the rendered map
                     pendingExportResolve.current = async () => {
+                        console.log(`[Phase 2] onRenderComplete callback fired for ${dateLabel}`);
                         try {
                             const mapWrapper = hiddenMapWrapperRef.current;
                             if (mapWrapper) {
@@ -397,6 +409,7 @@ function LunarCalendarModal({ isOpen, onClose, initialDate, initialLocation, onV
                                     }
                                 }, 50);
                             } else {
+                                console.error('[Phase 2] mapWrapper ref is null!');
                                 completeWithTimeout(null);
                             }
                         } catch (e) {
@@ -406,6 +419,7 @@ function LunarCalendarModal({ isOpen, onClose, initialDate, initialLocation, onV
                     };
 
                     // Trigger render (should use cached calculation)
+                    console.log(`[Phase 2] Setting exportMapParams for ${dateLabel}`);
                     setExportMapParams({
                         date: date,
                         location: calendarData.location,

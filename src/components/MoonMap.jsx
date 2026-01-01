@@ -130,14 +130,10 @@ const MoonMap = ({ date, calculationTrigger, selectedCity, highlightSharedNightC
                 setLoading(false);
 
                 // Signal completion for cache hits (critical for PDF export)
-                // Use a small timeout to let the render effect complete first
-                if (onRenderComplete && lastRenderedTrigger.current < calculationTrigger) {
-                    setTimeout(() => {
-                        console.log(`[MoonMap ${instanceId.current}] Signaling render complete for CACHED trigger ${calculationTrigger}`);
-                        onRenderComplete();
-                        lastRenderedTrigger.current = calculationTrigger;
-                    }, 150);
-                }
+                // SIMPLIFIED: Always signal render complete for cache hits
+                // The render effect will handle the actual drawing
+                // Note: We don't call onRenderComplete here anymore - let the render effect do it
+                // This prevents duplicate/premature calls
 
                 return;
             }
@@ -253,7 +249,7 @@ const MoonMap = ({ date, calculationTrigger, selectedCity, highlightSharedNightC
         const canvas = canvasRef.current;
         const ctx = canvas.getContext('2d');
 
-        console.time('CanvasDraw');
+        // Removed console.time to prevent 'Timer already exists' warnings
 
         // Set canvas to match the actual rendered size
         canvas.width = bbox.width;
@@ -646,7 +642,7 @@ const MoonMap = ({ date, calculationTrigger, selectedCity, highlightSharedNightC
         ctx.fillText(text2, footerX, sharedLegendY);
 
         // End canvas drawing timer
-        console.timeEnd('CanvasDraw');
+        // Removed console.timeEnd (timer removed above)
 
 
 
@@ -750,16 +746,20 @@ const MoonMap = ({ date, calculationTrigger, selectedCity, highlightSharedNightC
         }
 
         // Notify parent that render is complete - enable PDF export to proceed
-        if (onRenderComplete && lastRenderedTrigger.current < calculationTrigger) {
-            console.log(`[MoonMap ${instanceId.current}] Signaling render complete for trigger ${calculationTrigger}`);
-            // Use a timeout to let the canvas repaint finish
-            setTimeout(() => {
-                onRenderComplete();
-                lastRenderedTrigger.current = calculationTrigger;
-            }, 100);
-        }
-        if (sharedNightMode) {
-            // Keep empty block or remove entirely if cleaning up
+        // SIMPLIFIED: Always call onRenderComplete when render effect completes
+        if (onRenderComplete) {
+            // Only fire if we haven't already fired for this trigger
+            if (lastRenderedTrigger.current < calculationTrigger) {
+                console.log(`[MoonMap ${instanceId.current}] Signaling render complete for trigger ${calculationTrigger}`);
+                // Use a timeout to let the canvas repaint finish
+                // Reduced from 100ms to 50ms for faster PDF export
+                setTimeout(() => {
+                    onRenderComplete();
+                    lastRenderedTrigger.current = calculationTrigger;
+                }, 50);
+            } else {
+                console.log(`[MoonMap ${instanceId.current}] Skipping duplicate render complete for trigger ${calculationTrigger}`);
+            }
         }
 
         // SVG Shared Night borders REMOVED - migrated to Canvas for performance (O(N*M) fix)

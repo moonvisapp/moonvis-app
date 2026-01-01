@@ -1,13 +1,155 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Moon Visibility Explorer</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="manifest" href="/manifest.json" />
+
+  <!-- Primary Meta Tags -->
+  <title>Moon Visibility Explorer - Odeh Lunar Calendar & Hijri Moon Sighting Calculator</title>
+  <meta name="title" content="Moon Visibility Explorer - Odeh Lunar Calendar & Hijri Moon Sighting Calculator" />
+  <meta name="description"
+    content="Global moon visibility calculator using Odeh V-criterion. Generate accurate lunar calendars and Hijri dates with interactive moon sighting predictions for 70+ cities worldwide." />
+  <meta name="keywords"
+    content="moon visibility explorer, lunar calendar, Odeh criterion, Odeh lunar calendar, Odeh moon visibility, Hijri calendar, Islamic calendar, moon sighting, crescent visibility, Odeh V-criterion, lunar crescent prediction, Hijri date calculator, new moon visibility" />
+  <meta name="author" content="Moon Visibility Explorer" />
+  <meta name="robots" content="index, follow" />
+  <meta name="language" content="English" />
+  <link rel="canonical" href="https://moonvis-app-mauve.vercel.app" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://moonvis-app-mauve.vercel.app" />
+  <meta property="og:title" content="Moon Visibility Explorer - Odeh Lunar Calendar & Hijri Moon Sighting" />
+  <meta property="og:description"
+    content="Calculate moon visibility using Odeh V-criterion. Interactive lunar calendar generator with Hijri dates and moon sighting predictions worldwide." />
+  <meta property="og:image" content="https://moonvis-app-mauve.vercel.app/og-image.png" />
+  <meta property="og:site_name" content="Moon Visibility Explorer" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://moonvis-app-mauve.vercel.app" />
+  <meta property="twitter:title" content="Moon Visibility Explorer - Odeh Lunar Calendar" />
+  <meta property="twitter:description"
+    content="Calculate moon visibility using Odeh V-criterion. Generate accurate lunar calendars with Hijri dates." />
+  <meta property="twitter:image" content="https://moonvis-app-mauve.vercel.app/og-image.png" />
+
+  <!-- Additional SEO -->
+  <meta name="theme-color" content="#0f172a" />
+  <meta name="application-name" content="Moon Visibility Explorer" />
+  <meta name="apple-mobile-web-app-title" content="Moon Vis Explorer" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+  <!-- Structured Data (JSON-LD) for Google Rich Results -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Moon Visibility Explorer",
+      "alternateName": "Odeh Lunar Calendar Calculator",
+      "url": "https://moonvis-app-mauve.vercel.app",
+      "description": "Interactive global moon visibility calculator using Odeh V-criterion for accurate lunar calendar generation, Hijri date calculation, and Islamic moon sighting predictions worldwide.",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Web Browser",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "creator": {
+        "@type": "Organization",
+        "name": "Moon Visibility Explorer",
+        "email": "moonvisapp@gmail.com"
+      },
+      "keywords": "moon visibility, lunar calendar, Odeh criterion, Odeh V-criterion, Hijri calendar, Islamic calendar, moon sighting, crescent visibility, lunar prediction, Hijri date calculator, Mohammad Odeh, new moon calculation",
+      "featureList": [
+        "Global moon visibility map with Odeh V-criterion",
+        "12-month lunar calendar generator",
+        "Hijri date calculations",
+        "70+ international cities support",
+        "Shared night analysis",
+        "PDF export for lunar calendars",
+        "Interactive visibility zones (EV, VP, VO, NV)",
+        "2x2 degree grid resolution"
+      ]
+    }
+    </script>
+
+  <!-- WebSite Schema for Search Box -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Moon Visibility Explorer",
+      "url": "https://moonvis-app-mauve.vercel.app",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://moonvis-app-mauve.vercel.app?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+
+  <!-- FAQ Schema for Odeh Criterion -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the Odeh criterion for moon visibility?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The Odeh V-criterion (developed by Mohammad Odeh in 2006) is a scientifically validated method for predicting lunar crescent visibility. It categorizes visibility into four zones: Easily Visible (EV), Visible under Perfect conditions (VP), Visible with Optical aid (VO), and Not Visible (NV). This criterion is widely used for Islamic calendar calculations and Hijri date determination."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How accurate is the Odeh lunar calendar calculator?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Our Odeh lunar calendar uses the Odeh V-criterion combined with precise astronomical calculations via the astronomy-engine library. It provides highly accurate predictions for moon visibility with a 2°×2° global grid resolution, accounting for sunset times, moon position, and atmospheric conditions at over 70 major cities worldwide."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I use this for Hijri calendar calculations?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes! This tool generates accurate Hijri calendar dates based on actual moon visibility using the Odeh criterion. It determines the first night of each Islamic month by detecting when the lunar crescent becomes visible at your location, either through direct sighting or shared night inheritance."
+          }
+        }
+      ]
+    }
+    </script>
+</head>
+
+<body>
+  <!-- Hidden SEO content for better indexing -->
+  <noscript>
+    <div style="padding: 20px; max-width: 800px; margin: 0 auto;">
+      <h1>Moon Visibility Explorer - Odeh Lunar Calendar & Hijri Calculator</h1>
+      <p>Calculate accurate moon visibility using the Odeh V-criterion. Generate lunar calendars with Hijri dates for
+        any location worldwide.</p>
+      <h2>Features:</h2>
+      <ul>
+        <li>Odeh V-criterion moon visibility calculations</li>
+        <li>Interactive global lunar calendar generator</li>
+        <li>Hijri calendar and Islamic date calculator</li>
+        <li>Moon sighting predictions for 70+ cities</li>
+        <li>PDF export with visibility maps</li>
+      </ul>
+      <p>Please enable JavaScript to use the Moon Visibility Explorer application.</p>
+    </div>
+  </noscript>
+
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+
 </html>

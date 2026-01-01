@@ -1,0 +1,34 @@
+{
+    "name": "Moon Visibility Explorer",
+    "short_name": "MoonVis",
+    "description": "Global moon visibility calculator using Odeh V-criterion for lunar calendars and Hijri dates",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#0f172a",
+    "theme_color": "#0f172a",
+    "orientation": "any",
+    "icons": [
+        {
+            "src": "/vite.svg",
+            "sizes": "any",
+            "type": "image/svg+xml",
+            "purpose": "any maskable"
+        }
+    ],
+    "categories": [
+        "utilities",
+        "education",
+        "productivity"
+    ],
+    "screenshots": [],
+    "related_applications": [],
+    "prefer_related_applications": false,
+    "keywords": [
+        "moon visibility",
+        "lunar calendar",
+        "Odeh criterion",
+        "Hijri calendar",
+        "Islamic calendar",
+        "moon sighting"
+    ]
+}
