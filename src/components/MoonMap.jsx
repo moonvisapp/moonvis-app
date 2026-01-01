@@ -128,6 +128,17 @@ const MoonMap = ({ date, calculationTrigger, selectedCity, highlightSharedNightC
                     // we'll let the selectedCity effect handle it
                 }
                 setLoading(false);
+
+                // Signal completion for cache hits (critical for PDF export)
+                // Use a small timeout to let the render effect complete first
+                if (onRenderComplete && lastRenderedTrigger.current < calculationTrigger) {
+                    setTimeout(() => {
+                        console.log(`[MoonMap ${instanceId.current}] Signaling render complete for CACHED trigger ${calculationTrigger}`);
+                        onRenderComplete();
+                        lastRenderedTrigger.current = calculationTrigger;
+                    }, 150);
+                }
+
                 return;
             }
 
@@ -633,6 +644,9 @@ const MoonMap = ({ date, calculationTrigger, selectedCity, highlightSharedNightC
         // Explanation 2: Inherited
         const text2 = "Locations outlined in orange are those from which the selected location inherits its visibility status (e.g. for Night 1).";
         ctx.fillText(text2, footerX, sharedLegendY);
+
+        // End canvas drawing timer
+        console.timeEnd('CanvasDraw');
 
 
 

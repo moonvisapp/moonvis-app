@@ -380,7 +380,7 @@ function LunarCalendarModal({ isOpen, onClose, initialDate, initialLocation, onV
                         console.warn('[Phase 2] Map capture timed out for', date);
                         pendingExportResolve.current = null;
                         completeWithTimeout(null);
-                    }, 30000);
+                    }, 60000); // Increased from 30000ms to 60000ms (1 minute safety buffer)
 
                     // Capture the rendered map
                     pendingExportResolve.current = async () => {
