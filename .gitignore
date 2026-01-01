@@ -1,0 +1,35 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+dist-prod
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sw?
+
+# Archive directory
+archive/
+
+# Debug and test files (prevent future clutter)
+debug-*.js
+debug_*.js
+test-*.js
+test_*.js
+*-test.js
+*.test.js

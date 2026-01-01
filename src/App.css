@@ -1,0 +1,4 @@
+/* Reseting App.css to let index.css take control of the layout */
+.app-container {
+  min-height: 100vh;
+}
