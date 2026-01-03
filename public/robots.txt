@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://moonvisibilityexplorer.com/sitemap.xml
+Sitemap: https://moonvis-app-mauve.vercel.app/sitemap.xml
 
 # Optimize crawl rate
 Crawl-delay: 1
