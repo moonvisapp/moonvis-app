@@ -141,7 +141,8 @@ function App() {
         <p className="subtitle">Calculate Lunar Calendar & Hijri Dates Using Odeh V-Criterion</p>
         <p className="app-description">
           Generate accurate lunar calendars and Hijri dates with moon sighting predictions for 70+ cities worldwide.
-          Our tool uses the scientifically-validated Odeh V-criterion to visualize crescent visibility on a global map.
+          <br />
+          This tool uses the Odeh V-criterion to visualize crescent visibility on a global map.
         </p>
       </header>
 
