@@ -138,7 +138,11 @@ function App() {
     <div className="app-container">
       <header className="app-header">
         <h1>Moon Visibility Explorer</h1>
-        <p>Calculate Lunar Calendar & Hijri Dates Using Odeh V-Criterion</p>
+        <p className="subtitle">Calculate Lunar Calendar & Hijri Dates Using Odeh V-Criterion</p>
+        <p className="app-description">
+          Generate accurate lunar calendars and Hijri dates with moon sighting predictions for 70+ cities worldwide.
+          Our tool uses the scientifically-validated Odeh V-criterion to visualize crescent visibility on a global map.
+        </p>
       </header>
 
       <main className="app-main">
@@ -275,11 +279,6 @@ function App() {
       </main>
 
       <footer className="app-footer">
-        <p>
-          <strong>Moon Visibility Explorer</strong> - Free online Odeh lunar calendar calculator.
-          Generate accurate Hijri calendars with moon sighting predictions using the scientifically-validated Odeh V-criterion.
-          Calculate moon visibility for 70+ cities worldwide.
-        </p>
         <p>Built with React + D3 + Astronomy-Engine | Contact: <a href="mailto:moonvisapp@gmail.com" style={{ color: 'inherit' }}>moonvisapp@gmail.com</a></p>
       </footer>
 
