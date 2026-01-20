@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import MoonMap from './components/MoonMap';
 import LunarCalendarModal from './components/LunarCalendarModal';
+import AdBanner from './components/AdBanner'; // Import AdBanner
 import { MAJOR_CITIES } from './data/cities';
 import './App.css';
 
@@ -29,7 +30,7 @@ function App() {
     setPreservedCalendarData(calendarData);
     setCameFromCalendar(true);
 
-    // Extract the month data to check if Night 1 was via shared night inheritance
+    // Extract the monthly data to check if Night 1 was via shared night inheritance
     const month = calendarData.months.find(m =>
       m.night1Date.toISOString().split('T')[0] === night1Date.toISOString().split('T')[0]
     );
@@ -144,6 +145,12 @@ function App() {
           <br />
           This tool uses the Odeh V-criterion to visualize crescent visibility on a global map.
         </p>
+
+        {/* Top Ad Placeholder - Replace data-ad-slot with your actual ID */}
+        <AdBanner
+          style={{ marginTop: '20px', maxWidth: '800px', marginLeft: 'auto', marginRight: 'auto' }}
+        /* dataAdSlot="YOUR_AD_SLOT_ID_HERE" */
+        />
       </header>
 
       <main className="app-main">
@@ -279,9 +286,16 @@ function App() {
         </section>
       </main>
 
+      {/* Bottom Ad Placeholder - Replace data-ad-slot with your actual ID */}
+      <AdBanner
+        style={{ marginTop: '40px', marginBottom: '20px', maxWidth: '800px', marginLeft: 'auto', marginRight: 'auto' }}
+      /* dataAdSlot="YOUR_AD_SLOT_ID_HERE" */
+      />
+
       <footer className="app-footer">
         <p>Built with React + D3 + Astronomy-Engine | Contact: <a href="mailto:moonvisapp@gmail.com" style={{ color: 'inherit' }}>moonvisapp@gmail.com</a></p>
       </footer>
+
 
       <LunarCalendarModal
         isOpen={showCalendarModal}

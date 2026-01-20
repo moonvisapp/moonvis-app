@@ -1,4 +1,4 @@
-import { getVisibility, getNextNewMoonConjunction, getNightWindow, calculateSharedNight } from './astronomy';
+import { getVisibility, getNextNewMoonConjunction, getPrevNewMoonConjunction, getNightWindow, calculateSharedNight } from './astronomy';
 
 /**
  * Islamic month names in standard transliteration
@@ -264,8 +264,8 @@ export async function calculateLunarCalendar(startDate, location, numMonths = 2,
                 onProgress(baseProgress * 100, 100);
             }
 
-            // Find next conjunction from current date (inclusive)
-            const conjunction = getNextNewMoonConjunction(currentDate);
+            // Find previous conjunction from current date (changed from next to previous)
+            const conjunction = getPrevNewMoonConjunction(currentDate);
 
             if (!conjunction) {
                 console.error('Failed to find conjunction for date:', currentDate);
