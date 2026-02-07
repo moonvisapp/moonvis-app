@@ -127,13 +127,36 @@ export async function generateLunarCalendarPDF(calendarData, captureMapCallback,
 
         // Conjunction Info
         const conjunctionDate = new Date(month.conjunctionDate);
-        const tzOffset = Math.round(calendarData.location.lon / 15);
-        const localSolarDate = new Date(conjunctionDate.getTime() + tzOffset * 3600 * 1000);
-        const localSolarTimeStr = localSolarDate.toISOString().replace('T', ' ').substring(0, 19);
+        let localTimeStr;
+        let timeLabel = "Local Time";
+
+        if (calendarData.location.timezone) {
+            try {
+                const options = {
+                    timeZone: calendarData.location.timezone,
+                    year: 'numeric', month: '2-digit', day: '2-digit',
+                    hour: '2-digit', minute: '2-digit', second: '2-digit',
+                    hour12: true,
+                    timeZoneName: 'short'
+                };
+                const formatter = new Intl.DateTimeFormat('en-US', options);
+                localTimeStr = formatter.format(conjunctionDate);
+            } catch (e) {
+                const tzOffset = Math.round(calendarData.location.lon / 15);
+                const localSolarDate = new Date(conjunctionDate.getTime() + tzOffset * 3600 * 1000);
+                localTimeStr = localSolarDate.toISOString().replace('T', ' ').substring(0, 19) + ' (Est.)';
+                timeLabel = "Est. Local Time";
+            }
+        } else {
+            const tzOffset = Math.round(calendarData.location.lon / 15);
+            const localSolarDate = new Date(conjunctionDate.getTime() + tzOffset * 3600 * 1000);
+            localTimeStr = localSolarDate.toISOString().replace('T', ' ').substring(0, 19);
+            timeLabel = "Local Solar Time";
+        }
 
         pdf.setFontSize(9);
         pdf.setTextColor(100, 100, 100); // Grey color for conjunction info
-        pdf.text(`Conjunction: ${conjunctionDate.toUTCString().replace('GMT', 'UTC')} | Local Solar Time: ${localSolarTimeStr}`, margin, yPosition);
+        pdf.text(`Conjunction: ${conjunctionDate.toUTCString().replace('GMT', 'UTC')} | ${timeLabel}: ${localTimeStr}`, margin, yPosition);
         pdf.setTextColor(0, 0, 0); // Reset to black
         yPosition += 10;
 

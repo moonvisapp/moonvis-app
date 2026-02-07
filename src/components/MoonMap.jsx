@@ -471,26 +471,69 @@ const MoonMap = ({ date, calculationTrigger, selectedCity, highlightSharedNightC
         // Helper to format local time
         const getLocalTimeStr = (utcDate) => {
             if (!utcDate) return 'N/A';
-            let localTimeStr, locationLabel;
+            let localTimeStr, locationLabel, timeZoneLabel = '';
 
-            if (selectedCity) {
-                const tzOffset = Math.round(selectedCity.lon / 15);
-                const localTime = new Date(utcDate.getTime() + tzOffset * 3600 * 1000);
-                localTimeStr = localTime.toISOString().replace('T', ' ').substring(0, 19);
-                locationLabel = `${selectedCity.name}`;
+            if (selectedCity && selectedCity.timezone) {
+                // Use IANA timezone
+                try {
+                    const options = {
+                        timeZone: selectedCity.timezone,
+                        year: 'numeric', month: '2-digit', day: '2-digit',
+                        hour: '2-digit', minute: '2-digit', second: '2-digit',
+                        hour12: true,
+                        timeZoneName: 'short'
+                    };
+                    const formatter = new Intl.DateTimeFormat('en-US', options);
+                    localTimeStr = formatter.format(utcDate);
+                    locationLabel = `${selectedCity.name}`;
+                    const parts = formatter.formatToParts(utcDate);
+                    const tzName = parts.find(p => p.type === 'timeZoneName')?.value || '';
+                    timeZoneLabel = ` (${tzName})`;
+                } catch (e) {
+                    console.error("Timezone error:", e);
+                    // Fallback
+                    const tzOffset = Math.round(selectedCity.lon / 15);
+                    const localTime = new Date(utcDate.getTime() + tzOffset * 3600 * 1000);
+                    localTimeStr = localTime.toISOString().replace('T', ' ').substring(0, 19) + ' (Est.)';
+                    locationLabel = `${selectedCity.name}`;
+                }
+
             } else if (sharedNightMode?.selectedCell) {
-                const tzOffset = Math.round(sharedNightMode.selectedCell.lon / 15);
-                const localTime = new Date(utcDate.getTime() + tzOffset * 3600 * 1000);
-                localTimeStr = localTime.toISOString().replace('T', ' ').substring(0, 19);
-                locationLabel = `selected location: Lat: ${Math.abs(sharedNightMode.selectedCell.lat).toFixed(1)}°${sharedNightMode.selectedCell.lat >= 0 ? 'N' : 'S'}, Long: ${Math.abs(sharedNightMode.selectedCell.lon).toFixed(1)}°${sharedNightMode.selectedCell.lon >= 0 ? 'E' : 'W'}`;
+                // Shared night or random click - ESTIMATE
+                const lon = sharedNightMode.selectedCell.lon;
+                const tzOffsetInfo = getEstimatedOffset(lon);
+                const localTime = new Date(utcDate.getTime() + tzOffsetInfo.offset * 3600 * 1000);
+
+                // Format manually to look nice
+                const year = localTime.getUTCFullYear();
+                const month = String(localTime.getUTCMonth() + 1).padStart(2, '0');
+                const day = String(localTime.getUTCDate()).padStart(2, '0');
+                const hours = localTime.getUTCHours();
+                const minutes = String(localTime.getUTCMinutes()).padStart(2, '0');
+                const seconds = String(localTime.getUTCSeconds()).padStart(2, '0');
+
+                const ampm = hours >= 12 ? 'PM' : 'AM';
+                const hours12 = hours % 12 || 12;
+
+                localTimeStr = `${month}/${day}/${year}, ${hours12}:${minutes}:${seconds} ${ampm}`;
+                locationLabel = "Est. Local Time";
+                timeZoneLabel = ` (${tzOffsetInfo.label})`;
+
             } else {
+                // Should not happen usually given logic, but fallback to User's browser time
                 localTimeStr = utcDate.toLocaleString('en-US', {
                     year: 'numeric', month: '2-digit', day: '2-digit',
-                    hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
+                    hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true, timeZoneName: 'short'
                 });
-                locationLabel = "User's local time";
+                locationLabel = "User's Local Time";
             }
-            return { time: localTimeStr, label: locationLabel };
+            return { time: localTimeStr + timeZoneLabel, label: locationLabel }; // Time string already includes TZ
+        };
+
+        const getEstimatedOffset = (lon) => {
+            const offset = Math.round(lon / 15);
+            const sign = offset >= 0 ? '+' : '';
+            return { offset, label: `GMT${sign}${offset}` };
         };
 
         // Reference Date
@@ -528,7 +571,7 @@ const MoonMap = ({ date, calculationTrigger, selectedCity, highlightSharedNightC
             const firstPartWidth = labelWidth + ctx.measureText(valueText).width;
 
             ctx.fillStyle = "#94a3b8";
-            ctx.fillText(` | Local solar time: ${time} (${label})`, footerX + firstPartWidth, footerY);
+            ctx.fillText(` | ${time}`, footerX + firstPartWidth, footerY);
 
             footerY += lineHeight;
         }
@@ -551,7 +594,7 @@ const MoonMap = ({ date, calculationTrigger, selectedCity, highlightSharedNightC
 
             const firstPartWidth = labelWidth + ctx.measureText(valueText).width;
             ctx.fillStyle = "#94a3b8";
-            ctx.fillText(` | Local solar time: ${time} (${label})`, footerX + firstPartWidth, footerY);
+            ctx.fillText(` | ${time}`, footerX + firstPartWidth, footerY);
 
             footerY += lineHeight;
         }
@@ -561,7 +604,8 @@ const MoonMap = ({ date, calculationTrigger, selectedCity, highlightSharedNightC
         footerY += 5;
         ctx.fillStyle = "#94a3b8"; // Muted color
         ctx.font = "italic 11px sans-serif";
-        ctx.fillText("ℹ️ Local solar time is based on longitude (15° = 1 hour). It differs from civil time zones.", footerX, footerY);
+        // REMOVED explanation text about solar time
+        // ctx.fillText("ℹ️ Local solar time is based on longitude (15° = 1 hour). It differs from civil time zones.", footerX, footerY);
         footerY += lineHeight;
         ctx.fillText("Criterion: Odeh V-criterion", footerX, footerY);
 
