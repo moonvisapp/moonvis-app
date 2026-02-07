@@ -264,8 +264,8 @@ export async function calculateLunarCalendar(startDate, location, numMonths = 2,
                 onProgress(baseProgress * 100, 100);
             }
 
-            // Find previous conjunction from current date (changed from next to previous)
-            const conjunction = getPrevNewMoonConjunction(currentDate);
+            // Find next conjunction from current date to advance through months
+            const conjunction = getNextNewMoonConjunction(currentDate);
 
             if (!conjunction) {
                 console.error('Failed to find conjunction for date:', currentDate);

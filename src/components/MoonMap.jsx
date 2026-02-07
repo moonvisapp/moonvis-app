@@ -9,7 +9,8 @@ const colors = {
     'EV': '#4ade80',      // Green - Easily visible (Green-400)
     'VP': '#facc15',      // Yellow - Visible under perfect conditions
     'VO': '#ef4444',      // Red - Visible with optical aid
-    'NV': '#94a3b8'       // Grey - Not visible
+    'NV': '#94a3b8',      // Grey - Not visible
+    'I': '#94a3b8'        // Grey - Impossible (same as NV)
 };
 
 // Legend labels
@@ -17,7 +18,8 @@ const zoneLabels = {
     'EV': 'Easily Visible',
     'VP': 'Visible Under Perfect Conditions',
     'VO': 'Visible With Optical Aid',
-    'NV': 'Not Visible'
+    'NV': 'Not Visible',
+    'I': 'Impossible'
 };
 
 // Module-level cache for world map data to prevent re-fetching on every remount (crucial for export performance)

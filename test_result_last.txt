@@ -1,0 +1,17 @@
+--- Verifying Shared Night Logic ---
+Conjunction: null
+
+Calculated Night Windows:
+London: 2026-02-17T17:19:03.801Z - 2026-02-18T05:16:50.751Z
+New Orleans (West): 2026-02-17T23:50:23.006Z - 2026-02-18T11:16:50.845Z
+Chengdu (East): 2026-02-17T11:49:59.859Z - 2026-02-17T23:17:16.324Z
+
+Checking Overlap:
+User <-> West: true (Duration: 326.5 min)
+User <-> East: true (Duration: 358.2 min)
+
+Testing Inheritance Logic:
+Inheritance from West (New Orleans (West)): true 
+Inheritance from East (Chengdu (East)): true 
+  Debug: BestTime 2026-02-18T05:17:00.751Z > UserEnd 2026-02-18T05:16:50.751Z
+Inheritance with Late Observation: false Observation Time Invalid (After User Dawn)

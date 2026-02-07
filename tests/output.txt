@@ -1,0 +1,40 @@
+--- Validating Melbourne Shared Night (Jan 19, 2026) ---
+
+Melbourne Night Window (UTC):
+Start (Sunset): 2026-01-19T09:42:14.808Z
+End (Dawn/Sunr): 2026-01-19T17:32:21.153Z
+Duration: 7.84 hours (Summer - Short Night)
+
+--- global Sampling ---
+Lat	Lon	Region		Shared?	Color	Overlap(h)	Notes
+--------------------------------------------------------------------------------
+50	-180	Americas	NO	-     	0.0		Cand Night: 04:33-17:53
+50	-135	Americas	NO	-     	0.0		Cand Night: 01:33-14:53
+50	-90	Americas	NO	-     	0.0		Cand Night: 22:33-11:53
+50	-45	Americas	NO	-     	0.0		Cand Night: 19:32-08:53
+50	0	Eur/Afr 	YES	Cyan  	1.0		Cand Night: 16:32-05:53
+50	45	Eur/Afr 	YES	Cyan  	4.0		Cand Night: 13:32-02:53
+50	90	Unknown 	YES	Cyan  	7.0		Cand Night: 10:32-23:53
+50	135	Asia    	YES	Yellow	7.8		Cand Night: 07:32-20:53
+50	179	Asia    	YES	Yellow	7.8		Cand Night: 04:35-17:57
+--------------------------------------------------------------------------------
+0	-180	Americas	NO	-     	0.0		Cand Night: 06:14-16:54
+0	-135	Americas	NO	-     	0.0		Cand Night: 03:14-13:54
+0	-90	Americas	NO	-     	0.0		Cand Night: 00:14-10:54
+0	-45	Americas	NO	-     	0.0		Cand Night: 21:14-07:54
+0	0	Eur/Afr 	NO	-     	0.0		Cand Night: 18:14-04:54
+0	45	Eur/Afr 	YES	Cyan  	2.3		Cand Night: 15:14-01:54
+0	90	Unknown 	YES	Cyan  	5.3		Cand Night: 12:14-22:53
+0	135	Unknown 	YES	Yellow	7.8		Cand Night: 09:14-19:53
+0	179	Unknown 	YES	Yellow	7.3		Cand Night: 06:18-16:57
+--------------------------------------------------------------------------------
+-50	-180	Americas	NO	-     	0.0		Cand Night: 08:00-13:26
+-50	-135	Americas	NO	-     	0.0		Cand Night: 05:00-10:25
+-50	-90	Americas	NO	-     	0.0		Cand Night: 02:00-07:25
+-50	-45	Americas	NO	-     	0.0		Cand Night: 23:00-04:24
+-50	0	Eur/Afr 	NO	-     	0.0		Cand Night: 20:01-01:24
+-50	45	Eur/Afr 	YES	Cyan  	0.5		Cand Night: 17:01-22:23
+-50	90	Unknown 	YES	Cyan  	3.5		Cand Night: 14:01-19:22
+-50	135	Aus/NZ  	YES	Cyan  	5.3		Cand Night: 11:01-16:22
+-50	179	Unknown 	YES	Yellow	3.7		Cand Night: 08:05-13:25
+--------------------------------------------------------------------------------

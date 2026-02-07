@@ -1,0 +1,18 @@
+=== Testing Bug Fixes ===
+
+Test 1: Conjunction Search for Feb 17, 2026
+Expected: Should find conjunction at ~12:01 UTC on Feb 17, 2026
+✓ Conjunction found: 2026-02-17T12:01:47.328Z
+  Time difference from midnight: 12.029813333333333 hours
+
+Test 2: Melbourne Visibility Classification
+Expected: Code "I" (Impossible) - Moon sets before sunset
+Result: Code "I" - Conjunction occurs after sunset
+✓ Correct: Melbourne shows "I" (Impossible)
+  Lag: 1461.65 minutes
+
+Test 3: Color Property Removal
+Expected: No "color" property in visibility result
+✓ Correct: No "color" property in result (clean architecture)
+
+=== All Tests Complete ===

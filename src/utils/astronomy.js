@@ -56,16 +56,50 @@ export function getNextNewMoonConjunction(date) {
 }
 
 /**
+ * Find the Next Full Moon date after the given date.
+ * Returns a JS Date object (which has the UTC timestamp).
+ * 
+ * Calculated Topocentrically for the observer's location.
+ * @param {Date} date - Start date
+ * @param {number} lat - Latitude in degrees (default 0)
+ * @param {number} lon - Longitude in degrees (default 0)
+ */
+export function getNextFullMoon(date, lat = 0, lon = 0) {
+    const time = new Astronomy.AstroTime(date);
+    const observer = new Astronomy.Observer(lat, lon, 0);
+    const fm = Astronomy.SearchMoonPhase(180, time, 40, observer); // 180 degrees is Full Moon
+    return fm ? fm.date : null;
+}
+
+/**
  * Get geocentric conjunction (new moon) time near the given date.
  * This is used as a reference for the conjunction rule check.
  * For visibility purposes, geocentric is sufficient as topocentric
  * conjunction is within minutes of geocentric for most locations.
+ * 
+ * Searches bidirectionally and returns the nearest conjunction to the given date.
  */
 export function getGeocentricConjunction(date) {
     try {
         const time = new Astronomy.AstroTime(date);
-        const newMoon = Astronomy.SearchMoonPhase(0, time, -5);
-        return newMoon ? newMoon.date : null;
+
+        // Search both forward and backward to find the nearest conjunction
+        // ±20 days is sufficient since lunar months are ~29.53 days
+        // (max distance to nearest conjunction is ~14.75 days)
+        const prevConjunction = Astronomy.SearchMoonPhase(0, time, -20);
+        const nextConjunction = Astronomy.SearchMoonPhase(0, time, 20);
+
+        // Handle edge cases
+        if (!prevConjunction && !nextConjunction) return null;
+        if (!prevConjunction) return nextConjunction.date;
+        if (!nextConjunction) return prevConjunction.date;
+
+        // Return whichever conjunction is closer to the input date
+        const dateMs = date.getTime();
+        const prevDiff = Math.abs(dateMs - prevConjunction.date.getTime());
+        const nextDiff = Math.abs(nextConjunction.date.getTime() - dateMs);
+
+        return prevDiff < nextDiff ? prevConjunction.date : nextConjunction.date;
     } catch (err) {
         console.error('Error finding geocentric conjunction:', err);
         return null;
@@ -266,8 +300,7 @@ export function getVisibility(date, lat, lon, algorithm = 'odeh', conjunctionTim
             return {
                 code: 'U',
                 value: null,
-                reason: 'No sunset found',
-                color: '#00ffff' // Cyan
+                reason: 'No sunset found'
             };
         }
 
@@ -279,8 +312,7 @@ export function getVisibility(date, lat, lon, algorithm = 'odeh', conjunctionTim
             return {
                 code: 'U',
                 value: null,
-                reason: 'No moonset found',
-                color: '#00ffff' // Cyan
+                reason: 'No moonset found'
             };
         }
 
@@ -295,7 +327,6 @@ export function getVisibility(date, lat, lon, algorithm = 'odeh', conjunctionTim
                 code: 'I',
                 value: null,
                 reason: 'Moon sets before or at sunset',
-                color: '#ff0000', // Red
                 lat,
                 lon,
                 tzHours,
@@ -320,7 +351,6 @@ export function getVisibility(date, lat, lon, algorithm = 'odeh', conjunctionTim
                     code: 'I',
                     value: null,
                     reason: 'Conjunction occurs after sunset',
-                    color: '#ff0000', // Red
                     lat,
                     lon,
                     tzHours,
@@ -373,30 +403,25 @@ export function getVisibility(date, lat, lon, algorithm = 'odeh', conjunctionTim
         const V = ARCV - odehLimit;
 
         // 11. Map to visibility zones
-        let code, color, zoneName;
+        let code, zoneName;
 
         if (V >= 5.65) {
             code = 'EV';
-            color = '#00ff00'; // Green
             zoneName = 'Easily Visible';
         } else if (V >= 2) {
             code = 'VP';
-            color = '#ff00ff'; // Magenta
             zoneName = 'Visible Under Perfect Conditions';
         } else if (V >= -0.96) {
             code = 'VO';
-            color = '#0000ff'; // Blue
             zoneName = 'Visible With Optical Aid';
         } else {
             code = 'NV';
-            color = '#cccccc'; // Grey/White - not possible but not red-flag
             zoneName = 'Not Visible';
         }
 
         return {
             code,
             value: V,
-            color,
             zoneName,
             algorithm: 'odeh-criterion',
             lat,
@@ -426,7 +451,6 @@ export function getVisibility(date, lat, lon, algorithm = 'odeh', conjunctionTim
             code: 'U',
             value: null,
             reason: err.message,
-            color: '#00ffff', // Cyan
             lat,
             lon
         };

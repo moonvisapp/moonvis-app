@@ -97,10 +97,12 @@ self.onmessage = async (e) => {
                         // const cellSunset = cellNightWindow.nightStart.getTime();
                         // if (userSunset < cellSunset) continue; 
 
-                        if (userSunsetTime < B_start) continue;
-
                         // 4. Heavy Visibility Check
                         const vis = getVisibility(date, lat, lon, 'odeh', conjunctionTime);
+
+                        // Constraint: bestTimeUTC must be <= userNightEnd
+                        // (Observation time at candidate location must be valid for User's night)
+                        if (vis.bestTimeUTC.getTime() > A_end) continue;
 
                         if (vis.code === 'VO' || vis.code === 'VP' || vis.code === 'EV') {
                             matchingCells.push({
