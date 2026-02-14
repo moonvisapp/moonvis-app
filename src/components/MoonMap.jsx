@@ -18,8 +18,7 @@ const zoneLabels = {
     'EV': 'Easily Visible',
     'VP': 'Visible Under Perfect Conditions',
     'VO': 'Visible With Optical Aid',
-    'NV': 'Not Visible',
-    'I': 'Impossible'
+    'NVI': 'Not Visible / Impossible'  // Combined NV and I
 };
 
 // Module-level cache for world map data to prevent re-fetching on every remount (crucial for export performance)
@@ -591,8 +590,13 @@ const MoonMap = ({ date, calculationTrigger, selectedCity, highlightSharedNightC
         ctx.textBaseline = "middle";
         ctx.fillStyle = "#cbd5e1"; // Ensure text color is set
 
-        Object.entries(colors).forEach(([code, color]) => {
+        // Define specific order to avoid NV/I duplication
+        const legendOrder = ['EV', 'VP', 'VO', 'NVI'];
+
+        legendOrder.forEach(code => {
             const label = zoneLabels[code];
+            const color = code === 'NVI' ? colors['NV'] : colors[code]; // NVI uses NV color
+
             if (!label) return;
 
             // Color Box
