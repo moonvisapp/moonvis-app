@@ -302,40 +302,7 @@ const MoonMap = ({ date, calculationTrigger, selectedCity, highlightSharedNightC
             // REMOVED inefficient O(N*M) loop from here. Moved to dedicated loop below.
         });
 
-        // DRAW SHARED NIGHT HIGHLIGHTS ON CANVAS (Migrated from SVG)
-        if (sharedNightMode) {
-            const cellW = (width / 360) * 2;
-            const cellH = (height / 180) * 2;
-
-            // 1. Selected Cell (Fluro Yellow)
-            const selectedPos = projection([sharedNightMode.selectedCell.lon, sharedNightMode.selectedCell.lat]);
-            ctx.strokeStyle = "#CCFF00"; // Fluro Yellow
-            ctx.lineWidth = 2.5;
-            ctx.globalAlpha = 0.9;
-            ctx.strokeRect(selectedPos[0] - cellW / 2, selectedPos[1] - cellH / 2, cellW, cellH);
-
-            // 2. Earlier Shared Cells (Fluro Yellow Thin)
-            if (sharedNightMode.sharedCellsEarlier) {
-                ctx.strokeStyle = "#CCFF00"; // Fluro Yellow
-                ctx.lineWidth = 0.5;
-                ctx.globalAlpha = 0.8;
-                sharedNightMode.sharedCellsEarlier.forEach(cell => {
-                    const pos = projection([cell.lon, cell.lat]);
-                    ctx.strokeRect(pos[0] - cellW / 2, pos[1] - cellH / 2, cellW, cellH);
-                });
-            }
-
-            // 3. Later Shared Cells (Cyan-400 Thin)
-            if (sharedNightMode.sharedCellsLater) {
-                ctx.strokeStyle = "#22d3ee";
-                ctx.lineWidth = 0.5;
-                ctx.globalAlpha = 0.8;
-                sharedNightMode.sharedCellsLater.forEach(cell => {
-                    const pos = projection([cell.lon, cell.lat]);
-                    ctx.strokeRect(pos[0] - cellW / 2, pos[1] - cellH / 2, cellW, cellH);
-                });
-            }
-        }
+        // Shared night mode highlighting removed - feature deprecated
 
         // Draw Inherited Night Highlights (Orange Borders) - Efficient O(M) Loop
         if (highlightSharedNightCells && highlightSharedNightCells.length > 0) {
@@ -646,7 +613,7 @@ const MoonMap = ({ date, calculationTrigger, selectedCity, highlightSharedNightC
         // ctx.textAlign = "left";
         // ctx.fillText(`Date: ${date.toISOString().split('T')[0]}`, padding.left, 20);
 
-        // -- Shared Night Legend --
+        // -- Inherited Visibility Legend --
         // Starting a new row below the visibility codes
         let sharedLegendX = footerX;
         let sharedLegendY = footerY + 20; // Gap below visibility legend
@@ -654,18 +621,16 @@ const MoonMap = ({ date, calculationTrigger, selectedCity, highlightSharedNightC
         ctx.font = "bold 12px sans-serif";
         ctx.fillStyle = "#cbd5e1";
         ctx.textAlign = "left";
-        ctx.fillText("Shared Night Highlighting:", sharedLegendX, sharedLegendY);
+        ctx.fillText("Additional Highlighting:", sharedLegendX, sharedLegendY);
 
         sharedLegendY += 18; // Move to items row
 
-        const sharedItems = [
-            { label: "Shares Night (Earlier)", color: "#CCFF00", type: "outline", width: 1.0 },
-            { label: "Shares Night (Later)", color: "#22d3ee", type: "outline", width: 1.0 },
+        const highlightItems = [
             { label: "Inherited Visibility Source", color: "#ff6600", type: "outline", width: 1.5 }
         ];
 
         ctx.font = "12px sans-serif";
-        sharedItems.forEach(item => {
+        highlightItems.forEach(item => {
             // Draw box outline
             ctx.strokeStyle = item.color;
             ctx.lineWidth = item.width;
@@ -685,18 +650,9 @@ const MoonMap = ({ date, calculationTrigger, selectedCity, highlightSharedNightC
         ctx.font = "italic 11px sans-serif";
         ctx.fillStyle = "#94a3b8"; // Muted text
 
-        // Explanation 1: Shared Night Band
-        const text1 = "The yellow-to-blue band represents the slice of the Earth that shares the night with the chosen location. Blue regions share the night but possess a later sunset.";
-        // Simple wrap check (splitting roughly in half for safety on 800px width)
-        ctx.fillText("The yellow-to-blue band represents the slice of the Earth that shares the night with the chosen location.", footerX, sharedLegendY);
-        sharedLegendY += 16;
-        ctx.fillText("Blue regions share the night but possess a later sunset than the chosen location.", footerX, sharedLegendY);
-
-        sharedLegendY += 20; // Gap
-
-        // Explanation 2: Inherited
-        const text2 = "Locations outlined in orange are those from which the selected location inherits its visibility status (e.g. for Night 1).";
-        ctx.fillText(text2, footerX, sharedLegendY);
+        // Explanation: Inherited Visibility
+        const text = "Locations outlined in orange are those from which the selected location inherits its visibility status (e.g. for Night 1).";
+        ctx.fillText(text, footerX, sharedLegendY);
 
         // End canvas drawing timer
         // Removed console.timeEnd (timer removed above)
@@ -719,66 +675,7 @@ const MoonMap = ({ date, calculationTrigger, selectedCity, highlightSharedNightC
         interactiveLayer.append("rect")
             .attr("x", padding.left).attr("y", padding.top).attr("width", width).attr("height", height)
             .attr("fill", "transparent")
-            .on("click", (event) => {
-                // Single click: clear shared night mode if active
-                if (sharedNightMode) {
-                    setSharedNightMode(null);
-                }
-            })
-            .on("dblclick", (event) => {
-                // Double click: activate shared night mode
-                const [lon, lat] = projection.invert(d3.pointer(event, svg.node()));
-                const targetLon = Math.floor(lon / 2) * 2 + 1.0;
-                const targetLat = Math.floor(lat / 2) * 2 + 1.0;
-                const clickedCell = data.grid.find(c => Math.abs(c.lat - targetLat) < 0.1 && Math.abs(c.lon - targetLon) < 0.1);
-
-                if (clickedCell && clickedCell.nightStart && clickedCell.nightEnd) {
-                    // Find all cells that share the night with the clicked cell
-                    // Categorize by sunset time relative to selected cell
-                    const sharedCellsEarlier = []; // Sunset before or at same time as selected
-                    const sharedCellsLater = [];   // Sunset after selected
-
-                    data.grid.forEach(cell => {
-                        if (cell === clickedCell) return; // Skip the clicked cell
-
-                        const { sharedNight } = calculateSharedNight(clickedCell, cell);
-                        if (sharedNight) {
-                            // Compare sunset times
-                            if (cell.nightStart.getTime() > clickedCell.nightStart.getTime()) {
-                                sharedCellsLater.push(cell);  // Sunset is later (west of selected)
-                            } else {
-                                sharedCellsEarlier.push(cell); // Sunset is earlier or same (east of selected)
-                            }
-                        }
-                    });
-
-                    // Calculate latitude with most shared cells
-                    const allSharedCells = [...sharedCellsEarlier, ...sharedCellsLater];
-                    const latitudeCounts = {};
-                    allSharedCells.forEach(cell => {
-                        const lat = cell.lat;
-                        latitudeCounts[lat] = (latitudeCounts[lat] || 0) + 1;
-                    });
-
-                    let maxLat = null;
-                    let maxCount = 0;
-                    Object.entries(latitudeCounts).forEach(([lat, count]) => {
-                        if (count > maxCount) {
-                            maxCount = count;
-                            maxLat = parseFloat(lat);
-                        }
-                    });
-
-                    setSharedNightMode({
-                        selectedCell: clickedCell,
-                        sharedCellsEarlier,
-                        sharedCellsLater,
-                        maxSharedLatitude: maxLat,
-                        maxSharedCount: maxCount
-                    });
-                    setShowDebugPanel(false); // Close debug panel if open
-                }
-            })
+            // Click handlers removed - shared night mode deprecated
             .on("mousemove", (event) => {
                 const [lon, lat] = projection.invert(d3.pointer(event, svg.node()));
                 const targetLon = Math.floor(lon / 2) * 2 + 1.0;
