@@ -107,46 +107,53 @@ export function getGeocentricConjunction(date) {
 }
 
 /**
- * Find when astronomical twilight ends (sun reaches -18° below horizon).
+ * Find when morning astronomical twilight starts (sun ascends to -18° before sunrise).
  * This defines the end of the night window.
  * 
  * @param {Astronomy.Observer} observer - Observer location
- * @param {Date} sunsetTime - The sunset time
- * @returns {Date|null} Time when sun reaches -18° altitude, or null if not found
+ * @param {Date} sunsetTime - The sunset time (used to find the next sunrise)
+ * @returns {Date|null} Time when sun reaches -18° altitude in the morning, or null if not found
  */
-export function getAstronomicalTwilightEnd(observer, sunsetTime) {
+export function getAstronomicalTwilightStart(observer, sunsetTime) {
     try {
-        // Search for when sun reaches -18° altitude after sunset
-        // Astronomical twilight is when sun is between -12° and -18° below horizon
+        // First, find sunrise after the given sunset
         const sunsetAstroTime = new Astronomy.AstroTime(sunsetTime);
+        const sunriseResult = Astronomy.SearchRiseSet('Sun', observer, 1, sunsetAstroTime, 1);
 
-        // Search up to 12 hours after sunset
-        // (at high latitudes, twilight can last longer, but we need to avoid finding next day's crossing)
-        const result = Astronomy.SearchAltitude('Sun', observer, -1, sunsetAstroTime, 12, -18);
+        if (!sunriseResult) {
+            return null; // No sunrise (polar regions)
+        }
+
+        const sunriseTime = sunriseResult.date;
+
+        // Now search BACKWARD from sunrise to find when sun reaches -18° while ascending
+        // This is when morning astronomical twilight begins
+        // Search direction +1 means we're looking for sun ASCENDING through -18°
+        const sunriseAstroTime = new Astronomy.AstroTime(sunriseTime);
+
+        // Search backward up to 12 hours before sunrise
+        const result = Astronomy.SearchAltitude('Sun', observer, +1, sunriseAstroTime, -12, -18);
 
         if (!result) {
             return null; // Sun doesn't reach -18° (high latitude summer)
         }
 
-        // Validate: the result should be BEFORE sunrise to be valid twilight end
-        // Find sunrise to check
-        const sunriseResult = Astronomy.SearchRiseSet('Sun', observer, 1, sunsetTime, 1);
-        if (sunriseResult && result.date > sunriseResult.date) {
-            // The -18° crossing is AFTER sunrise, meaning it's the next day's crossing
-            // The sun never reached -18° during this night
-            return null;
+        // Validate: the result should be AFTER sunset and BEFORE sunrise
+        if (result.date < sunsetTime || result.date > sunriseTime) {
+            return null; // Invalid crossing time
         }
 
         return result.date;
     } catch (err) {
-        console.error('Error calculating astronomical twilight end:', err);
+        console.error('Error calculating morning astronomical twilight start:', err);
         return null;
     }
 }
 
 /**
  * Get the night window for a location on a given date.
- * Night window = [sunset, astronomical twilight end)
+ * Night window = [evening sunset, morning astronomical twilight start)
+ * Morning astronomical twilight starts when sun reaches -18° while ascending (before sunrise).
  * 
  * @param {number} lat - Latitude in degrees
  * @param {number} lon - Longitude in degrees
@@ -181,10 +188,10 @@ export function getNightWindow(lat, lon, date, conjunctionTime = null, knownSuns
             sunsetTime = sunsetResult.date;
         }
 
-        // Find astronomical twilight end
-        const twilightEnd = getAstronomicalTwilightEnd(observer, sunsetTime);
-        if (!twilightEnd) {
-            // Astronomical twilight doesn't end (sun doesn't reach -18°)
+        // Find morning astronomical twilight start
+        const twilightStart = getAstronomicalTwilightStart(observer, sunsetTime);
+        if (!twilightStart) {
+            // Morning astronomical twilight doesn't start (sun doesn't reach -18°)
             // This happens at high latitudes in summer
             // Use sunrise as approximation, but search within same night only
             const sunriseResult = Astronomy.SearchRiseSet('Sun', observer, 1, sunsetTime, 1);
@@ -218,7 +225,7 @@ export function getNightWindow(lat, lon, date, conjunctionTime = null, knownSuns
 
         return {
             nightStart: sunsetTime,
-            nightEnd: twilightEnd,
+            nightEnd: twilightStart,
             lat,
             lon
         };
