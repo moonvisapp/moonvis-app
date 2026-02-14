@@ -255,7 +255,19 @@ export async function calculateLunarCalendar(startDate, location, numMonths = 2,
         // ========== PASS 1: CALCULATE ALL NIGHT 1 DATES ==========
         console.log('[LunarCalendar] Pass 1: Calculating all Night 1 dates...');
         const monthData = []; // Store conjunction, night1Date, etc. for each month
+
+        // Start from the PREVIOUS conjunction to include the month containing the input date
         let passDate = new Date(startDate);
+
+        // Find the previous conjunction to get the month that contains the input date
+        const firstConjunction = getPrevNewMoonConjunction(passDate);
+        if (!firstConjunction) {
+            console.error('Failed to find previous conjunction for start date:', passDate);
+            return null;
+        }
+
+        passDate = firstConjunction;
+        console.log(`[LunarCalendar] Starting from previous conjunction: ${passDate.toISOString().split('T')[0]} to include month containing input date`);
 
         for (let monthIndex = 0; monthIndex < numMonths; monthIndex++) {
             // Check for cancellation

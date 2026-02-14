@@ -710,6 +710,28 @@ function LunarCalendarModal({ isOpen, onClose, initialDate, initialLocation, onV
                                 const refDateForYear = month.days[tenthDayIndex]?.gregorianDate || month.night1Date;
                                 const hijriYear = getHijriYear(refDateForYear);
 
+                                // Format conjunction time in local timezone
+                                const conjunctionLocalTime = calendarData.location.timezone
+                                    ? month.conjunctionDate.toLocaleString('en-US', {
+                                        weekday: 'short',
+                                        year: 'numeric',
+                                        month: 'short',
+                                        day: 'numeric',
+                                        hour: '2-digit',
+                                        minute: '2-digit',
+                                        timeZone: calendarData.location.timezone,
+                                        timeZoneName: 'short'
+                                    })
+                                    : month.conjunctionDate.toLocaleString('en-US', {
+                                        weekday: 'short',
+                                        year: 'numeric',
+                                        month: 'short',
+                                        day: 'numeric',
+                                        hour: '2-digit',
+                                        minute: '2-digit',
+                                        timeZoneName: 'short'
+                                    });
+
                                 return (
                                     <div key={monthIndex} className="lunar-month">
                                         <div className="month-header">
@@ -717,6 +739,8 @@ function LunarCalendarModal({ isOpen, onClose, initialDate, initialLocation, onV
                                             <p className="month-details">
                                                 Night 1: {month.night1Date.toLocaleDateString()}
                                                 ({month.night1Method === 'direct' ? 'Direct visibility' : 'Shared Night inheritance'})
+                                                <br />
+                                                Conjunction: {conjunctionLocalTime}
                                             </p>
                                         </div>
 
