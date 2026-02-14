@@ -1,15 +1,4 @@
 User-agent: *
 Allow: /
 
-# Sitemap location
 Sitemap: https://moonvis-app-mauve.vercel.app/sitemap.xml
-
-# Optimize crawl rate
-Crawl-delay: 1
-
-# Block common bot paths (optional, adjust as needed)
-User-agent: AhrefsBot
-Crawl-delay: 10
-
-User-agent: SemrushBot
-Crawl-delay: 10

@@ -463,3 +463,35 @@ export function getVisibility(date, lat, lon, algorithm = 'odeh', conjunctionTim
         };
     }
 }
+
+/**
+ * Get Moon Illumination Fraction.
+ * @param {Date} date
+ * @returns {number} 0.0 to 1.0
+ */
+export function getMoonIllumination(date) {
+    const time = new Astronomy.AstroTime(date);
+    const illumination = Astronomy.Illumination('Moon', time);
+    return illumination.fraction;
+}
+
+/**
+ * Get Moon Rise and Set Times for a given location.
+ * @param {Date} date
+ * @param {number} lat
+ * @param {number} lon
+ * @returns {Object} { rise: Date|null, set: Date|null }
+ */
+export function getMoonTimes(date, lat, lon) {
+    const observer = new Astronomy.Observer(lat, lon, 0);
+    const time = new Astronomy.AstroTime(date);
+
+    // Search for rise/set within 24 hours of input date
+    const rise = Astronomy.SearchRiseSet('Moon', observer, 1, time, 1);
+    const set = Astronomy.SearchRiseSet('Moon', observer, -1, time, 1);
+
+    return {
+        rise: rise ? rise.date : null,
+        set: set ? set.date : null
+    };
+}
