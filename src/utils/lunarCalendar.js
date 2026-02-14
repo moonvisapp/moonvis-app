@@ -252,41 +252,46 @@ export async function calculateLunarCalendar(startDate, location, numMonths = 2,
     }
 
     try {
+        // ========== PASS 1: CALCULATE ALL NIGHT 1 DATES ==========
+        console.log('[LunarCalendar] Pass 1: Calculating all Night 1 dates...');
+        const monthData = []; // Store conjunction, night1Date, etc. for each month
+        let passDate = new Date(startDate);
+
         for (let monthIndex = 0; monthIndex < numMonths; monthIndex++) {
             // Check for cancellation
             if (shouldCancel()) {
                 console.log('Calculation cancelled by user');
                 return null;
             }
-            // Report start of month calculation
+
+            // Report Pass 1 progress (0-50%)
             if (onProgress) {
-                const baseProgress = monthIndex / numMonths;
-                onProgress(baseProgress * 100, 100);
+                const passProgress = (monthIndex / numMonths) * 50;
+                onProgress(passProgress, 100);
             }
 
             // Find next conjunction from current date to advance through months
-            const conjunction = getNextNewMoonConjunction(currentDate);
+            const conjunction = getNextNewMoonConjunction(passDate);
 
             if (!conjunction) {
-                console.error('Failed to find conjunction for date:', currentDate);
+                console.error('Failed to find conjunction for date:', passDate);
                 break;
             }
 
-            // Find Night 1 for this lunar month - this is the slow part
-            // We'll add progress callbacks during the search
+            // Find Night 1 for this lunar month
             const night1Result = await findNight1WithProgress(
                 conjunction,
                 location,
                 (dayIndex) => {
                     if (onProgress) {
-                        // Calculate sub-progress within this month
-                        const baseProgress = monthIndex / numMonths;
-                        const monthProgress = (dayIndex / ESTIMATED_DAYS_PER_MONTH) * (1 / numMonths) * 0.5;
-                        onProgress((baseProgress + monthProgress) * 100, 100);
+                        // Calculate sub-progress within Pass 1
+                        const baseProgress = (monthIndex / numMonths) * 50;
+                        const monthProgress = (dayIndex / ESTIMATED_DAYS_PER_MONTH) * (1 / numMonths) * 25;
+                        onProgress(baseProgress + monthProgress, 100);
                     }
                 },
                 shouldCancel,
-                workers // PASS THE WORKER POOL
+                workers
             );
 
             if (!night1Result) {
@@ -301,9 +306,9 @@ export async function calculateLunarCalendar(startDate, location, numMonths = 2,
 
             const night1Date = night1Result.night1Date;
 
-            // Find next conjunction to determine month end
+            // Find next conjunction for reference
             const nextConjunction = getNextNewMoonConjunction(
-                new Date(conjunction.getTime() + 24 * 60 * 60 * 1000) // Start from day after conjunction
+                new Date(conjunction.getTime() + 24 * 60 * 60 * 1000)
             );
 
             if (!nextConjunction) {
@@ -311,12 +316,68 @@ export async function calculateLunarCalendar(startDate, location, numMonths = 2,
                 break;
             }
 
+            // Determine Islamic month name based on full moon date (approximate day 14)
+            const approxDay14 = new Date(night1Date);
+            approxDay14.setDate(approxDay14.getDate() + 13);
+            const islamicMonthName = getIslamicMonthName(approxDay14);
+
+            monthData.push({
+                conjunction,
+                night1Date,
+                night1Method: night1Result.method,
+                night1Details: night1Result,
+                nextConjunction,
+                islamicMonthName
+            });
+
+            console.log(`[LunarCalendar] Pass 1: Month ${monthIndex + 1} (${islamicMonthName}) - Night 1: ${night1Date.toISOString().split('T')[0]}`);
+
+            // Allow UI to update
+            await new Promise(resolve => setTimeout(resolve, 0));
+
+            // Set current date to next conjunction for next iteration
+            passDate = new Date(nextConjunction);
+        }
+
+        // ========== PASS 2: GENERATE DAYS FOR EACH MONTH ==========
+        console.log('[LunarCalendar] Pass 2: Generating days for each month...');
+
+        for (let monthIndex = 0; monthIndex < monthData.length; monthIndex++) {
+            // Check for cancellation
+            if (shouldCancel()) {
+                console.log('Calculation cancelled by user');
+                return null;
+            }
+
+            // Report Pass 2 progress (50-100%)
+            if (onProgress) {
+                const passProgress = 50 + ((monthIndex / monthData.length) * 50);
+                onProgress(passProgress, 100);
+            }
+
+            const monthInfo = monthData[monthIndex];
+            const night1Date = monthInfo.night1Date;
+
+            // Determine the end date for this month
+            // If there's a next month, stop before its Night 1
+            // Otherwise, use the next conjunction
+            let monthEndDate;
+            if (monthIndex + 1 < monthData.length) {
+                // Use next month's Night 1 as the boundary
+                monthEndDate = monthData[monthIndex + 1].night1Date;
+                console.log(`[LunarCalendar] Pass 2: Month ${monthIndex + 1} ends before ${monthEndDate.toISOString().split('T')[0]} (next month's Night 1)`);
+            } else {
+                // Last month: use next conjunction as boundary
+                monthEndDate = monthInfo.nextConjunction;
+                console.log(`[LunarCalendar] Pass 2: Month ${monthIndex + 1} (last) ends at conjunction ${monthEndDate.toISOString().split('T')[0]}`);
+            }
+
             // Generate all days in this lunar month
             const days = [];
             let dayDate = new Date(night1Date);
             let nightNumber = 1;
 
-            while (dayDate < nextConjunction) {
+            while (dayDate < monthEndDate) {
                 days.push({
                     nightNumber,
                     gregorianDate: new Date(dayDate),
@@ -327,32 +388,20 @@ export async function calculateLunarCalendar(startDate, location, numMonths = 2,
                 nightNumber++;
             }
 
-            // Determine Islamic month name based on full moon date (day 14-15)
-            const fullMoonIndex = Math.min(13, days.length - 1); // Day 14 (0-indexed)
-            const fullMoonDate = days[fullMoonIndex]?.gregorianDate || night1Date;
-            const islamicMonthName = getIslamicMonthName(fullMoonDate);
+            console.log(`[LunarCalendar] Pass 2: Month ${monthIndex + 1} (${monthInfo.islamicMonthName}) has ${days.length} nights`);
 
             months.push({
-                monthName: islamicMonthName,
-                conjunctionDate: conjunction,
-                night1Date,
-                night1Method: night1Result.method,
-                night1Details: night1Result,
-                nextConjunctionDate: nextConjunction,
+                monthName: monthInfo.islamicMonthName,
+                conjunctionDate: monthInfo.conjunction,
+                night1Date: monthInfo.night1Date,
+                night1Method: monthInfo.night1Method,
+                night1Details: monthInfo.night1Details,
+                nextConjunctionDate: monthInfo.nextConjunction,
                 days
             });
 
-            // Report progress after month is complete
-            if (onProgress) {
-                const percentage = ((monthIndex + 1) / numMonths) * 100;
-                onProgress(percentage, 100);
-            }
-
-            // Allow UI to update by yielding control briefly
-            await new Promise(resolve => setTimeout(resolve, 0)); // Reduced from 10ms
-
-            // Set current date to next conjunction for next iteration
-            currentDate = new Date(nextConjunction);
+            // Allow UI to update
+            await new Promise(resolve => setTimeout(resolve, 0));
         }
 
         return {
