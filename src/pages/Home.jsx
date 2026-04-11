@@ -310,6 +310,7 @@ function Home() {
 
             {/* Bottom Ad Placeholder - Now supported by substantial publisher content! */}
             <AdBanner
+                dataAdSlot="5502376796"
                 style={{ marginTop: '20px', marginBottom: '40px', maxWidth: '800px', marginLeft: 'auto', marginRight: 'auto' }}
             />
 
