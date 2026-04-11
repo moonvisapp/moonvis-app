@@ -1,5 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import CookieBanner from './components/CookieBanner';
 import './App.css';
 
 // Lazy loading pages for better performance
@@ -52,6 +53,8 @@ function App() {
             <Link to="/privacy" style={{ color: '#94a3b8' }}>Privacy Policy</Link>
           </div>
         </footer>
+
+        <CookieBanner />
       </div>
     </Router>
   );

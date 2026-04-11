@@ -51,9 +51,9 @@ const AdBanner = ({
     }
 
     return (
-        <div className={className} style={{ overflow: 'hidden', ...style }}>
+        <div className={className} style={{ width: '100%', boxSizing: 'border-box', overflow: 'hidden', padding: '0 10px', ...style }}>
             <ins className="adsbygoogle"
-                style={{ display: 'block' }}
+                style={{ display: 'block', margin: '0 auto' }}
                 data-ad-client="ca-pub-4188234977040621"
                 data-ad-slot={dataAdSlot}
                 data-ad-format={dataAdFormat}
