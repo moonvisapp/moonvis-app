@@ -270,9 +270,47 @@ function Home() {
                 </section>
             </main>
 
-            {/* Bottom Ad Placeholder */}
+            <article className="seo-publisher-content" style={{
+                maxWidth: '800px',
+                margin: '40px auto',
+                padding: '0 20px',
+                color: '#334155',
+                lineHeight: '1.6',
+                fontFamily: 'system-ui, -apple-system, sans-serif'
+            }}>
+                <h2 style={{ color: '#0f172a', borderBottom: '2px solid #e2e8f0', paddingBottom: '10px' }}>
+                    Welcome to the Moon Visibility Explorer
+                </h2>
+                <p>
+                    The Moon Visibility Explorer is an advanced astronomical tool designed for individuals, communities, and researchers who need accurate predictions for lunar crescent visibility. By utilizing the well-regarded scientifically-validated <strong>Odeh V-criterion</strong>, our calculator provides high-resolution data on moon sightings and generates reliable Hijri calendars for over 70 major cities globally.
+                </p>
+
+                <h3 style={{ color: '#0f172a', marginTop: '30px' }}>How to Use This Calculator</h3>
+                <p>
+                    To get started, simply utilize the control panel above to select a <strong>Reference Date</strong>. The interactive global map will immediately calculate the phase of the moon and categorize global visibility into distinct zones:
+                </p>
+                <ul style={{ paddingLeft: '20px', marginBottom: '20px' }}>
+                    <li><strong style={{ color: '#16a34a' }}>Easily Visible (Green):</strong> The crescent can be seen with the naked eye even in less-than-ideal conditions.</li>
+                    <li><strong style={{ color: '#ca8a04' }}>Visible with Perfect Conditions (Yellow):</strong> Sightings rely on a clear sky and unobstructed horizon.</li>
+                    <li><strong style={{ color: '#d97706' }}>Optical Aid Needed (Orange):</strong> Telescopes or binoculars are required to locate the new moon.</li>
+                    <li><strong style={{ color: '#dc2626' }}>Not Visible (Red):</strong> Sighting is impossible under any conditions.</li>
+                </ul>
+                <p>
+                    You can also generate an entire 12-month <strong>Lunar Calendar</strong> for your selected city. Click the "Calculate Lunar Calendar" button to predict the start of each month over an entire year layout, taking into account complex shared night calculations.
+                </p>
+
+                <h3 style={{ color: '#0f172a', marginTop: '30px' }}>Understanding the Odeh V-Criterion</h3>
+                <p>
+                    Developed by astronomer Mohammad Odeh, the V-criterion is an empirical model based on hundreds of verified crescent observations. Unlike purely geometric calculations, the Odeh model evaluates the thickness of the crescent and the contrast relative to the twilight sky background. This sophisticated mathematical approach ensures that our tool accounts for real-world optical limits, providing one of the most reliable predictors for the Islamic Hijri calendar available today.
+                </p>
+                <p>
+                    Whether you are making localized decisions on lunar sightings, calculating future Islamic dates, or just taking an interest in astronomy, the Moon Visibility Explorer gives you transparent and rapid insights previously restricted to professional observatories.
+                </p>
+            </article>
+
+            {/* Bottom Ad Placeholder - Now supported by substantial publisher content! */}
             <AdBanner
-                style={{ marginTop: '40px', marginBottom: '20px', maxWidth: '800px', marginLeft: 'auto', marginRight: 'auto' }}
+                style={{ marginTop: '20px', marginBottom: '40px', maxWidth: '800px', marginLeft: 'auto', marginRight: 'auto' }}
             />
 
             <LunarCalendarModal

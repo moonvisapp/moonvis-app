@@ -1,6 +1,5 @@
 import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import AdBanner from './components/AdBanner';
 import './App.css';
 
 // Lazy loading pages for better performance
@@ -33,11 +32,6 @@ function App() {
             <Link to="/privacy" style={{ marginRight: '15px' }}>Privacy</Link>
             <Link to="/terms">Terms</Link>
           </nav>
-
-          {/* Top Ad Placeholder */}
-          <AdBanner
-            style={{ marginTop: '20px', maxWidth: '800px', marginLeft: 'auto', marginRight: 'auto' }}
-          />
         </header>
 
         <Suspense fallback={<div className="loader">Loading...</div>}>
