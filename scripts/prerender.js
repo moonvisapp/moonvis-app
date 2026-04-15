@@ -28,11 +28,27 @@ async function runPrerender() {
     const server = await startServer();
 
     console.log('[Prerender] Launching Puppeteer...');
-    // In Docker Alpine, we must skip sandbox and use the installed executable
-    const browser = await puppeteer.launch({
-        headless: "new",
-        args: ['--no-sandbox', '--disable-setuid-sandbox']
-    });
+    let browser;
+    if (process.env.VERCEL) {
+        console.log('[Prerender] Vercel environment detected. Using @sparticuz/chromium...');
+        const sparticuzModule = await import('@sparticuz/chromium');
+        const sparticuz = sparticuzModule.default || sparticuzModule;
+        const puppeteerCoreModule = await import('puppeteer-core');
+        const puppeteerCore = puppeteerCoreModule.default || puppeteerCoreModule;
+        
+        browser = await puppeteerCore.launch({
+            args: sparticuz.args,
+            defaultViewport: sparticuz.defaultViewport,
+            executablePath: await sparticuz.executablePath(),
+            headless: sparticuz.headless === true ? "new" : sparticuz.headless,
+        });
+    } else {
+        // Default execution using standard puppeteer
+        browser = await puppeteer.launch({
+            headless: "new",
+            args: ['--no-sandbox', '--disable-setuid-sandbox']
+        });
+    }
 
     const page = await browser.newPage();
     
