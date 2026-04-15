@@ -36,10 +36,13 @@ async function runPrerender() {
         const puppeteerCoreModule = await import('puppeteer-core');
         const puppeteerCore = puppeteerCoreModule.default || puppeteerCoreModule;
         
+        const executablePath = await sparticuz.executablePath();
+        process.env.LD_LIBRARY_PATH = executablePath.substring(0, executablePath.lastIndexOf('/'));
+        
         browser = await puppeteerCore.launch({
             args: sparticuz.args,
             defaultViewport: sparticuz.defaultViewport,
-            executablePath: await sparticuz.executablePath(),
+            executablePath: executablePath,
             headless: sparticuz.headless === true ? "new" : sparticuz.headless,
         });
     } else {
