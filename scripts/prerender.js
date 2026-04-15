@@ -30,19 +30,16 @@ async function runPrerender() {
     console.log('[Prerender] Launching Puppeteer...');
     let browser;
     if (process.env.VERCEL) {
-        console.log('[Prerender] Vercel environment detected. Using @sparticuz/chromium...');
+        console.log('[Prerender] Vercel environment detected. Using @sparticuz/chromium v147...');
         const sparticuzModule = await import('@sparticuz/chromium');
         const sparticuz = sparticuzModule.default || sparticuzModule;
         const puppeteerCoreModule = await import('puppeteer-core');
         const puppeteerCore = puppeteerCoreModule.default || puppeteerCoreModule;
         
-        const executablePath = await sparticuz.executablePath();
-        process.env.LD_LIBRARY_PATH = executablePath.substring(0, executablePath.lastIndexOf('/'));
-        
         browser = await puppeteerCore.launch({
             args: sparticuz.args,
             defaultViewport: sparticuz.defaultViewport,
-            executablePath: executablePath,
+            executablePath: await sparticuz.executablePath(),
             headless: sparticuz.headless === true ? "new" : sparticuz.headless,
         });
     } else {
