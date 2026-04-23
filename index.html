@@ -6,6 +6,9 @@
   <link rel="icon" type="image/png" href="/favicon.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="manifest" href="/manifest.json" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4188234977040621"
@@ -109,7 +112,7 @@
           "name": "What is the Odeh criterion for moon visibility?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "The Odeh V-criterion (developed by Mohammad Odeh in 2006) is a scientifically validated method for predicting lunar crescent visibility. It categorizes visibility into four zones: Easily Visible (EV), Visible under Perfect conditions (VP), Visible with Optical aid (VO), and Not Visible (NV). This criterion is widely used for Islamic calendar calculations and Hijri date determination."
+            "text": "The Odeh V-criterion (developed by Mohammad Shawkat Odeh in 2004) is a scientifically validated empirical model for predicting lunar crescent visibility, based on 737 observation records. It categorizes visibility into four zones: Easily Visible (EV), Visible under Perfect conditions (VP), Visible with Optical aid (VO), and Not Visible (NV). This criterion is widely used for Islamic calendar calculations and Hijri date determination."
           }
         },
         {
@@ -117,7 +120,7 @@
           "name": "How accurate is the Odeh lunar calendar calculator?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Our Odeh lunar calendar uses the Odeh V-criterion combined with precise astronomical calculations via the astronomy-engine library. It provides highly accurate predictions for moon visibility with a 2°×2° global grid resolution, accounting for sunset times, moon position, and atmospheric conditions at over 70 major cities worldwide."
+            "text": "Our calculator uses the Odeh V-criterion combined with precise astronomical calculations via the astronomy-engine library (VSOP87 and ELP2000). It provides highly accurate predictions for moon visibility with a 2°×2° global grid resolution, accounting for sunset times, moon position, and atmospheric conditions at over 70 major cities worldwide."
           }
         },
         {
@@ -127,7 +130,46 @@
             "@type": "Answer",
             "text": "Yes! This tool generates accurate Hijri calendar dates based on actual moon visibility using the Odeh criterion. It determines the first night of each Islamic month by detecting when the lunar crescent becomes visible at your location, either through direct sighting or shared night inheritance."
           }
+        },
+        {
+          "@type": "Question",
+          "name": "Why do different countries start Ramadan on different days?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The discrepancy arises from multiple factors: the curvature of the Earth means the crescent may be visible in western regions but not eastern regions on the same evening; different countries follow different methodologies (local sighting, global sighting, or calculated); and political and organizational factors play a role. Moon Visibility Explorer helps clarify these discrepancies by showing exactly where the crescent is predicted to be visible on any given date."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does Shared Night mean in the Islamic calendar?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Shared Night (Ishtirak al-Layl) is a concept in Islamic jurisprudence where if the crescent moon is sighted in one location, the new month also begins for other locations that share a significant portion of the night with the sighting location. Moon Visibility Explorer implements this concept computationally to provide comprehensive calendar predictions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I export a lunar calendar from Moon Visibility Explorer?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "After generating a lunar calendar for your selected city, you can export it as a PDF for printing, import events into Google Calendar via ICS format, or download raw data as CSV for spreadsheet analysis. Click the Calculate Lunar Calendar button and look for export options at the bottom of the calendar modal."
+          }
         }
+      ]
+    }
+    </script>
+
+  <!-- BreadcrumbList Schema for Navigation -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://moonvis-app-mauve.vercel.app/" },
+        { "@type": "ListItem", "position": 2, "name": "About", "item": "https://moonvis-app-mauve.vercel.app/about" },
+        { "@type": "ListItem", "position": 3, "name": "Guide", "item": "https://moonvis-app-mauve.vercel.app/guide" },
+        { "@type": "ListItem", "position": 4, "name": "FAQ", "item": "https://moonvis-app-mauve.vercel.app/faq" },
+        { "@type": "ListItem", "position": 5, "name": "Methodology", "item": "https://moonvis-app-mauve.vercel.app/methodology" }
       ]
     }
     </script>
