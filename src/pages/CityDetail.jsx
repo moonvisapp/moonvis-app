@@ -214,7 +214,7 @@ const CityDetail = () => {
                     <p>Real-time moon visibility and lunar calendar predictions for {city.name}, powered by the Odeh V-criterion.</p>
                 </div>
 
-                <div className="map-container" style={{ height: '600px', marginBottom: '40px' }}>
+                <div className="map-container" style={{ minHeight: '700px', marginBottom: '40px' }}>
                     {/* We pass the city to pre-select it on the map */}
                     <MoonMap
                         date={dateObj}
