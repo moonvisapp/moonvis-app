@@ -1,85 +1,78 @@
-import fs from 'fs';
+import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { MAJOR_CITIES } from '../src/data/cities.js';
 
-// Convert import.meta.url to __dirname equivalent
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Base URL of the deployed application
-const BASE_URL = 'https://moonvis-app-mauve.vercel.app';
+const DOMAIN = 'https://moonvis-app-mauve.vercel.app';
+const SITEMAP_PATH = path.resolve(__dirname, '../public/sitemap.xml');
 
-// Static routes
-const staticRoutes = [
-    '/',
-    '/about',
-    '/guide',
-    '/privacy',
-    '/terms'
+// Base standard routes
+const BASE_ROUTES = [
+    { url: '/', priority: '1.0', changefreq: 'daily' },
+    { url: '/about', priority: '0.8', changefreq: 'monthly' },
+    { url: '/guide', priority: '0.8', changefreq: 'monthly' },
+    { url: '/faq', priority: '0.8', changefreq: 'monthly' },
+    { url: '/methodology', priority: '0.8', changefreq: 'monthly' },
+    { url: '/contact', priority: '0.7', changefreq: 'monthly' },
+    { url: '/cities', priority: '0.8', changefreq: 'monthly' },
+    { url: '/privacy', priority: '0.5', changefreq: 'yearly' },
+    { url: '/terms', priority: '0.5', changefreq: 'yearly' },
 ];
 
-// Import cities data
-// Note: We need to read the file manually or use a trick because we can't easily import from src in a standalone script without more config
-// Let's just read the file content and parse it loosely or duplicate the list if needed. 
-// However, to be robust, let's try to import it if it's a module. 
-// Since modern Node supports ESM, we can try importing directly if the paths align.
-// But src/data/cities.js is not a built file. 
-// Simplest approach: Extract the array using regex from the file content.
+// Article routes
+const ARTICLE_ROUTES = [
+    { url: '/articles/ramadan-guide', priority: '0.8', changefreq: 'monthly' },
+    { url: '/articles/eid-dates-guide', priority: '0.8', changefreq: 'monthly' },
+    { url: '/articles/hijri-calendar-history', priority: '0.7', changefreq: 'monthly' },
+    { url: '/articles/moon-sighting-committees', priority: '0.7', changefreq: 'monthly' },
+    { url: '/articles/islamic-vs-gregorian-calendar', priority: '0.7', changefreq: 'monthly' },
+    { url: '/articles/lunar-phases', priority: '0.7', changefreq: 'monthly' },
+    { url: '/articles/moon-sighting-tips', priority: '0.7', changefreq: 'monthly' },
+    { url: '/articles/shared-night-explained', priority: '0.7', changefreq: 'monthly' },
+];
 
-const citiesPath = path.join(__dirname, '../src/data/cities.js');
-const citiesContent = fs.readFileSync(citiesPath, 'utf8');
+async function generateSitemap() {
+    console.log('[Sitemap] Generating sitemap...');
+    const today = new Date().toISOString().split('T')[0];
+    
+    let xmlContent = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+`;
 
-// Regex to extract city names
-// Matches: { name: "Mecca, Saudi Arabia", ... }
-const cityRegex = /name:\s*"([^"]+)"/g;
-let match;
-const cities = [];
+    const addRoute = (route) => {
+        xmlContent += `  <url>
+    <loc>${DOMAIN}${route.url}</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>${route.changefreq}</changefreq>
+    <priority>${route.priority}</priority>
+  </url>\n`;
+    };
 
-while ((match = cityRegex.exec(citiesContent)) !== null) {
-    cities.push(match[1]);
+    // Add base routes
+    BASE_ROUTES.forEach(addRoute);
+
+    // Add article routes
+    ARTICLE_ROUTES.forEach(addRoute);
+
+    // Add city routes dynamically
+    MAJOR_CITIES.forEach((city) => {
+        addRoute({
+            url: `/city/${encodeURIComponent(city.name)}`,
+            priority: '0.6',
+            changefreq: 'weekly'
+        });
+    });
+
+    xmlContent += `</urlset>`;
+
+    await fs.writeFile(SITEMAP_PATH, xmlContent, 'utf8');
+    console.log(`[Sitemap] Successfully generated sitemap.xml with ${BASE_ROUTES.length + ARTICLE_ROUTES.length + MAJOR_CITIES.length} URLs.`);
 }
 
-console.log(`Found ${cities.length} cities.`);
-
-// Generate XML content
-const generateSitemap = () => {
-    const today = new Date().toISOString().split('T')[0];
-
-    let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
-    xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
-
-    // Add static routes
-    staticRoutes.forEach(route => {
-        xml += '  <url>\n';
-        xml += `    <loc>${BASE_URL}${route}</loc>\n`;
-        xml += `    <lastmod>${today}</lastmod>\n`;
-        xml += '    <changefreq>weekly</changefreq>\n';
-        xml += '    <priority>0.8</priority>\n';
-        xml += '  </url>\n';
-    });
-
-    // Add dynamic city routes
-    cities.forEach(city => {
-        // Encode city name for URL
-        const citySlug = encodeURIComponent(city); // e.g., Mecca%2C%20Saudi%20Arabia
-        // Note: In our App, we use the city name directly in the URL param.
-        // It's good practice to handle spaces, etc.
-
-        xml += '  <url>\n';
-        xml += `    <loc>${BASE_URL}/city/${citySlug}</loc>\n`;
-        xml += `    <lastmod>${today}</lastmod>\n`;
-        xml += '    <changefreq>monthly</changefreq>\n';
-        xml += '    <priority>0.6</priority>\n';
-        xml += '  </url>\n';
-    });
-
-    xml += '</urlset>';
-    return xml;
-};
-
-// Write to public/sitemap.xml
-const sitemapContent = generateSitemap();
-const outputPath = path.join(__dirname, '../public/sitemap.xml');
-
-fs.writeFileSync(outputPath, sitemapContent);
-console.log(`Sitemap generated at ${outputPath}`);
+generateSitemap().catch(err => {
+    console.error('[Sitemap] Failed to generate sitemap:', err);
+    process.exit(1);
+});

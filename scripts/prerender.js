@@ -3,6 +3,7 @@ import express from 'express';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import fs from 'fs/promises';
+import { MAJOR_CITIES } from '../src/data/cities.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -17,8 +18,19 @@ const ROUTES_TO_PRERENDER = [
     '/guide',
     '/faq',
     '/methodology',
+    '/contact',
+    '/cities',
     '/privacy',
     '/terms',
+    '/articles/hijri-calendar-history',
+    '/articles/moon-sighting-committees',
+    '/articles/islamic-vs-gregorian-calendar',
+    '/articles/lunar-phases',
+    '/articles/moon-sighting-tips',
+    '/articles/shared-night-explained',
+    '/articles/ramadan-guide',
+    '/articles/eid-dates-guide',
+    ...MAJOR_CITIES.map(city => `/city/${encodeURIComponent(city.name)}`)
 ];
 
 async function startServer() {

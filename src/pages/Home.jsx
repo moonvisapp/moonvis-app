@@ -368,8 +368,22 @@ function Home() {
                     على عكس أدوات التقويم الإسلامي الأخرى التي تعتمد على حسابات مبسطة أو جداول محسوبة مسبقاً، يقوم مستكشف رؤية القمر بإجراء حسابات فلكية في الوقت الفعلي لكل استعلام. جميع الحسابات تتم في متصفحك محلياً مما يضمن الخصوصية الكاملة.
                 </p>
 
-                <p style={{ marginTop: '1.5rem' }}>
-                    Ready to learn more? Visit our <a href="/guide" style={{ color: '#38bdf8' }}>User Guide</a> for step-by-step instructions, check the <a href="/faq" style={{ color: '#38bdf8' }}>FAQ</a> for common questions, or explore the <a href="/about" style={{ color: '#38bdf8' }}>About page</a> to learn about the science behind crescent visibility prediction.
+                <h3 style={{ color: '#ffffff', marginTop: '30px' }}>Learn More About Islamic Astronomy</h3>
+                <p>
+                    Explore our library of educational articles about the Islamic calendar, moon sighting, and lunar astronomy:
+                </p>
+                <ul style={{ paddingLeft: '20px', lineHeight: '2.2' }}>
+                    <li><a href="/articles/ramadan-guide" style={{ color: '#38bdf8' }}>When Does Ramadan Start?</a> — Predictions and planning guide</li>
+                    <li><a href="/articles/eid-dates-guide" style={{ color: '#38bdf8' }}>Eid al-Fitr & Eid al-Adha Dates</a> — When to expect the two Eids</li>
+                    <li><a href="/articles/hijri-calendar-history" style={{ color: '#38bdf8' }}>History of the Hijri Calendar</a> — From pre-Islamic origins to modern systems</li>
+                    <li><a href="/articles/moon-sighting-committees" style={{ color: '#38bdf8' }}>How Moon Sighting Committees Work</a> — Country-by-country guide</li>
+                    <li><a href="/articles/islamic-vs-gregorian-calendar" style={{ color: '#38bdf8' }}>Islamic vs. Gregorian Calendar</a> — Key differences explained</li>
+                    <li><a href="/articles/lunar-phases" style={{ color: '#38bdf8' }}>Understanding Lunar Phases</a> — The astronomy behind the crescent</li>
+                    <li><a href="/articles/moon-sighting-tips" style={{ color: '#38bdf8' }}>Moon Sighting Tips</a> — Practical guide for observers</li>
+                    <li><a href="/articles/shared-night-explained" style={{ color: '#38bdf8' }}>Shared Night Explained</a> — The fiqh concept and how we implement it</li>
+                </ul>
+                <p style={{ marginTop: '1rem' }}>
+                    Also visit our <a href="/guide" style={{ color: '#38bdf8' }}>User Guide</a> for step-by-step instructions, check the <a href="/faq" style={{ color: '#38bdf8' }}>FAQ</a> for common questions, or explore the <a href="/about" style={{ color: '#38bdf8' }}>About page</a> to learn about our mission.
                 </p>
             </article>
 
