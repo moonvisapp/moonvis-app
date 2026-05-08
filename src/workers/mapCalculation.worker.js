@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-globals */
 import {
     getVisibility,
     getPrevNewMoonConjunction,
@@ -32,7 +31,6 @@ self.onmessage = async (e) => {
             // Returns only matching cells, or empty array
 
             const { latStart, latEnd, userNightStart, userNightEnd } = params;
-            const userSunsetTime = new Date(userNightStart).getTime();
             const matchingCells = [];
 
             const stepLon = 2;
@@ -41,8 +39,6 @@ self.onmessage = async (e) => {
             for (let lat = latStart; lat <= latEnd; lat += stepLat) {
                 for (let lon = -179.0; lon <= 179.0; lon += stepLon) {
                     try {
-                        const res = getVisibility(date, lat, lon, 'odeh', conjunctionTime);
-
                         // optimization: check visibility code first before heavy night window calc?
                         // actually getVisibility is heavy part. 
                         // But we need night window to check shared night.
@@ -58,7 +54,6 @@ self.onmessage = async (e) => {
                         // We need a lightweight "getNightWindow" that doesn't do full visibility physics if possible.
                         // But getNightWindow uses Astronomy Engine which is fast enough.
 
-                        const nightWindow = getNightWindow(lat, lon, date, conjunctionTime, res.sunsetUTC); // pass sunset if we have it?
                         // Actually, let's reverse:
                         // 1. Get Night Window (relatively cheap)
                         // 2. Check overlap
@@ -114,7 +109,7 @@ self.onmessage = async (e) => {
                             // So we must continue finding all of them in this chunk.
                         }
 
-                    } catch (err) {
+                    } catch {
                         // ignore
                     }
                 }
@@ -133,8 +128,6 @@ self.onmessage = async (e) => {
             // Recalculates shared night for all cells relative to a selected cell
 
             const { selectedCellLon, selectedCellLat, selectedNightStart, selectedNightEnd } = params;
-            const selectedStart = new Date(selectedNightStart).getTime();
-            const selectedEnd = new Date(selectedNightEnd).getTime();
 
             const sharedCellsEarlier = [];
             const sharedCellsLater = [];
@@ -227,7 +220,7 @@ self.onmessage = async (e) => {
                                 }
                             }
                         }
-                    } catch (e) {
+                    } catch {
                         // ignore
                     }
                 }
@@ -321,7 +314,7 @@ self.onmessage = async (e) => {
                             }
                         }
 
-                    } catch (err) {
+                    } catch {
                         // Ignore individual cell errors
                     }
                 }

@@ -1,6 +1,5 @@
 
 import { getNightWindow, calculateSharedNight, getGeocentricConjunction } from '../src/utils/astronomy.js';
-import { normalizeLon } from '../src/utils/astronomy.js';
 
 async function validateMelbourne() {
     console.log('--- Validating Melbourne Shared Night (Jan 19, 2026) ---');

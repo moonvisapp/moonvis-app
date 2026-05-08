@@ -1,4 +1,4 @@
-import { getVisibility, getNextNewMoonConjunction, getPrevNewMoonConjunction, getNightWindow, calculateSharedNight } from './astronomy';
+import { getVisibility, getNextNewMoonConjunction, getPrevNewMoonConjunction, getNightWindow } from './astronomy';
 
 /**
  * Islamic month names in standard transliteration
@@ -165,7 +165,7 @@ export async function checkSharedNightVisibility(date, location, conjunctionTime
             const latStart = minLat + (index * rangePerWorker);
             const latEnd = Math.min(maxLat, latStart + rangePerWorker); // overlapping edge is fine, or subtract small epsilon
 
-            return new Promise((resolve, reject) => {
+            return new Promise((resolve) => {
                 const workId = `shared_search_${date.getTime()}_${index}`;
 
                 const handleMessage = (e) => {
@@ -232,7 +232,6 @@ export async function findNight1(conjunctionDate, location, workers) {
  */
 export async function calculateLunarCalendar(startDate, location, numMonths = 2, onProgress = null, shouldCancel = () => false) {
     const months = [];
-    let currentDate = new Date(startDate);
     const ESTIMATED_DAYS_PER_MONTH = 30;
 
     // --- WORKER POOL INITIALIZATION ---

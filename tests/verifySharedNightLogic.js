@@ -1,5 +1,5 @@
 
-import { getVisibility, getNightWindow, calculateSharedNight, getGeocentricConjunction } from '../src/utils/astronomy.js';
+import { getNightWindow, calculateSharedNight, getGeocentricConjunction } from '../src/utils/astronomy.js';
 
 async function runTest() {
     console.log('--- Verifying Shared Night Logic ---');

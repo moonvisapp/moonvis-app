@@ -23,7 +23,16 @@ export default defineConfig([
       },
     },
     rules: {
-      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
+      'no-unused-vars': ['error', {
+        varsIgnorePattern: '^[A-Z_]',
+        argsIgnorePattern: '^_',
+      }],
+    },
+  },
+  {
+    files: ['scripts/**/*.js', 'tests/**/*.js', 'verify-conjunction-fix.js'],
+    languageOptions: {
+      globals: globals.node,
     },
   },
 ])

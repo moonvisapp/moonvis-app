@@ -1,15 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 const CookieBanner = () => {
-    const [isVisible, setIsVisible] = useState(false);
-
-    useEffect(() => {
-        // Check if user has already consented
+    const [isVisible, setIsVisible] = useState(() => {
         const consented = localStorage.getItem('moonvis_gdpr_consent');
-        if (!consented) {
-            setIsVisible(true);
-        }
-    }, []);
+        return !consented;
+    });
 
     const handleAccept = () => {
         localStorage.setItem('moonvis_gdpr_consent', 'true');

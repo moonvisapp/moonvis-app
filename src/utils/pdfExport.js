@@ -141,7 +141,7 @@ export async function generateLunarCalendarPDF(calendarData, captureMapCallback,
                 };
                 const formatter = new Intl.DateTimeFormat('en-US', options);
                 localTimeStr = formatter.format(conjunctionDate);
-            } catch (e) {
+            } catch {
                 const tzOffset = Math.round(calendarData.location.lon / 15);
                 const localSolarDate = new Date(conjunctionDate.getTime() + tzOffset * 3600 * 1000);
                 localTimeStr = localSolarDate.toISOString().replace('T', ' ').substring(0, 19) + ' (Est.)';
@@ -236,7 +236,6 @@ export async function generateLunarCalendarPDF(calendarData, captureMapCallback,
         yPosition += 7;
 
         // Table headers
-        const tableStartY = yPosition;
         const colWidths = [15, 45, 20, 110]; // Adjusted widths: Night#, Month, Year, Date
 
         const rowHeight = 7;

@@ -151,6 +151,29 @@ export function getAstronomicalTwilightStart(observer, sunsetTime) {
 }
 
 /**
+ * Find when evening astronomical twilight ends (sun descends to -18° after sunset).
+ *
+ * @param {Astronomy.Observer} observer - Observer location
+ * @param {Date} sunsetTime - The sunset time
+ * @returns {Date|null} Time when sun reaches -18° altitude after sunset, or null if not found
+ */
+export function getAstronomicalTwilightEnd(observer, sunsetTime) {
+    try {
+        const sunsetAstroTime = new Astronomy.AstroTime(sunsetTime);
+        const result = Astronomy.SearchAltitude('Sun', observer, -1, sunsetAstroTime, 0.5, -18);
+
+        if (!result) {
+            return null;
+        }
+
+        return result.date > sunsetTime ? result.date : null;
+    } catch (err) {
+        console.error('Error calculating evening astronomical twilight end:', err);
+        return null;
+    }
+}
+
+/**
  * Get the night window for a location on a given date.
  * Night window = [evening sunset, morning astronomical twilight start)
  * Morning astronomical twilight starts when sun reaches -18° while ascending (before sunrise).
@@ -161,7 +184,7 @@ export function getAstronomicalTwilightStart(observer, sunsetTime) {
  * @param {Date} knownSunset - Optional pre-calculated sunset time (UTC)
  * @returns {Object|null} { nightStart: Date, nightEnd: Date, lat, lon } or null
  */
-export function getNightWindow(lat, lon, date, conjunctionTime = null, knownSunset = null) {
+export function getNightWindow(lat, lon, date, _conjunctionTime = null, knownSunset = null) {
     try {
         lon = normalizeLon(lon);
         const observer = new Astronomy.Observer(lat, lon, 0);
@@ -283,7 +306,7 @@ export function calculateSharedNight(cellA, cellB) {
  * @param {Date} conjunctionTime - Pre-computed conjunction time (optional, for performance)
  * @returns {Object} Visibility result with visibility zones
  */
-export function getVisibility(date, lat, lon, algorithm = 'odeh', conjunctionTime = null) {
+export function getVisibility(date, lat, lon, _algorithm = 'odeh', conjunctionTime = null) {
     try {
         // Normalize longitude to [-180, +180)
         lon = normalizeLon(lon);

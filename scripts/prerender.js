@@ -119,7 +119,7 @@ async function runPrerender() {
     try {
         await page.waitForSelector('.seo-publisher-content', { timeout: 10000 });
         console.log('[Prerender] Found .seo-publisher-content on home page');
-    } catch (e) {
+    } catch {
         console.warn('[Prerender] Warning: .seo-publisher-content not found, continuing anyway');
     }
 

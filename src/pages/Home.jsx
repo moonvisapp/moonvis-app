@@ -225,7 +225,7 @@ function Home() {
                                     e.target.style.backgroundColor = '#10b981';
                                 }
                             }}
-                            title={''}
+                            title={calendarParamsChanged ? '' : 'Calendar already calculated for this date and location'}
                         >
                             Calculate Lunar Calendar
                         </button>

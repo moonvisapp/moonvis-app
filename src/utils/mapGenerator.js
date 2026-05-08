@@ -8,7 +8,7 @@ import * as d3 from 'd3';
  * @returns {Promise<string>} Data URL of the generated map image
  */
 export async function generateMapDataURL(date, location) {
-    return new Promise(async (resolve, reject) => {
+    return new Promise((resolve, reject) => {
         try {
             // Generate visibility grid for this date (same logic as MoonMap)
             const grid = [];
@@ -25,7 +25,7 @@ export async function generateMapDataURL(date, location) {
                             nightStart: nightWindow?.nightStart || null,
                             nightEnd: nightWindow?.nightEnd || null
                         });
-                    } catch (err) {
+                    } catch {
                         // Skip cells with errors
                     }
                 }

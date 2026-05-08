@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
 import * as topojson from 'topojson-client';
-import { getVisibility, getPrevNewMoonConjunction, getNextNewMoonConjunction, getGeocentricConjunction, getNightWindow, calculateSharedNight } from '../utils/astronomy';
+import { getNightWindow } from '../utils/astronomy';
+import { globalCalculationTracking } from '../utils/moonMapTracking';
 
 // Color Palette
 
@@ -24,29 +25,13 @@ const zoneLabels = {
 // Module-level cache for world map data to prevent re-fetching on every remount (crucial for export performance)
 let cachedWorldFeatures = null;
 
-// Global calculation tracking - persists across component mount/unmount cycles
-export const globalCalculationTracking = {
-    inProgress: false,
-    instanceCount: 0,
-    dataCache: new Map() // Cache full calculation results: dateString -> dataObject
-};
-
-// Reset function to clear tracking (call when modal closes to prevent stale cache)
-export const resetGlobalCalculationTracking = () => {
-    console.log('[MoonMap] Resetting global calculation tracking');
-    globalCalculationTracking.inProgress = false;
-    globalCalculationTracking.dataCache.clear();
-};
-
-const MoonMap = ({ date, calculationTrigger, selectedCity, highlightSharedNightCells, onRenderComplete, wrapperRef, enableYielding = true }) => {
+const MoonMap = ({ date, calculationTrigger, selectedCity, highlightSharedNightCells, onRenderComplete, wrapperRef }) => {
     const svgRef = useRef();
     const canvasRef = useRef();
     const worldFeaturesRef = useRef([]);
     const [loading, setLoading] = useState(false);
     const [progress, setProgress] = useState(0);
     const [data, setData] = useState(null);
-    const [selectedCell, setSelectedCell] = useState(null);
-    const [showDebugPanel, setShowDebugPanel] = useState(false);
     const [renderKey, setRenderKey] = useState(0);
     const [sharedNightMode, setSharedNightMode] = useState(null); // { selectedCell, sharedCells: [] }
 
@@ -234,7 +219,7 @@ const MoonMap = ({ date, calculationTrigger, selectedCity, highlightSharedNightC
         } else if (!selectedCity) {
             setSharedNightMode(null);
         }
-    }, [data, selectedCity, date]);
+    }, [data, selectedCity, date, sharedNightMode]);
 
     useEffect(() => {
         if (!data || !svgRef.current || !canvasRef.current) return;
@@ -519,7 +504,7 @@ const MoonMap = ({ date, calculationTrigger, selectedCity, highlightSharedNightC
 
         // Previous Conjunction
         if (data.prevConjunction) {
-            const { time, label } = getLocalTimeStr(data.prevConjunction);
+            const { time } = getLocalTimeStr(data.prevConjunction);
 
             const labelText = "Previous Conjunction: ";
             const valueText = data.prevConjunction.toUTCString().replace('GMT', 'UTC');
@@ -544,7 +529,7 @@ const MoonMap = ({ date, calculationTrigger, selectedCity, highlightSharedNightC
 
         // Next Conjunction
         if (data.nextConjunction) {
-            const { time, label } = getLocalTimeStr(data.nextConjunction);
+            const { time } = getLocalTimeStr(data.nextConjunction);
 
             const labelText = "Next Conjunction: ";
             const valueText = data.nextConjunction.toUTCString().replace('GMT', 'UTC');
@@ -736,15 +721,9 @@ const MoonMap = ({ date, calculationTrigger, selectedCity, highlightSharedNightC
             window.removeEventListener('resize', handleResize);
         };
 
-    }, [data, selectedCell, renderKey, sharedNightMode, highlightSharedNightCells, calculationTrigger, onRenderComplete]);
+    }, [data, renderKey, sharedNightMode, highlightSharedNightCells, calculationTrigger, onRenderComplete, date, selectedCity]);
 
     // NOTE: Second onRenderComplete callback removed - was causing duplicate/early calls
-
-
-    const formatDateTime = (utcDate, localDate) => {
-        if (!utcDate) return 'N/A';
-        return `${utcDate.toUTCString().replace('GMT', 'UTC')} / ${localDate ? localDate.toLocaleString() : 'N/A'} (Local)`;
-    };
 
     return (
         <div className="moon-map-container" ref={wrapperRef}>

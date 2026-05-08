@@ -1,4 +1,4 @@
-import { normalizeLon, getLongitudeBasedTimezone, getVisibility } from '../src/utils/astronomy.js';
+import { normalizeLon, getVisibility } from '../src/utils/astronomy.js';
 
 /**
  * Export debug data for a list of test points

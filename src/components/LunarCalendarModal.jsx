@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import MoonMap, { resetGlobalCalculationTracking, globalCalculationTracking } from './MoonMap';
+import MoonMap from './MoonMap';
+import { resetGlobalCalculationTracking, globalCalculationTracking } from '../utils/moonMapTracking';
 import { calculateLunarCalendar, getHijriYear } from '../utils/lunarCalendar';
 import { MAJOR_CITIES } from '../data/cities';
 import { generateLunarCalendarPDF, captureMapAsImage } from '../utils/pdfExport';
@@ -26,6 +27,7 @@ function LunarCalendarModal({ isOpen, onClose, initialDate, initialLocation, onV
     const pendingExportResolve = useRef(null);
     const isExportCancelledRef = useRef(false);
     const exportTriggerCounter = useRef(0); // Counter for export map triggers
+    const isCancelledRef = useRef(false);
 
     const onExportRenderComplete = React.useCallback(() => {
         if (pendingExportResolve.current) {
@@ -34,32 +36,6 @@ function LunarCalendarModal({ isOpen, onClose, initialDate, initialLocation, onV
             pendingExportResolve.current = null;
         }
     }, []);
-
-    // Initialize state when modal opens with passed-through parameters
-    useEffect(() => {
-        if (isOpen) {
-            setModalDate(initialDate?.toISOString().split('T')[0] || '');
-            setModalLocationName(initialLocation?.name || '');
-            setError(null);
-
-            // If preserved data exists, use it directly
-            if (preservedCalendarData) {
-                console.log('[Modal] Using preserved calendar data');
-                setCalendarData(preservedCalendarData);
-                setIsCalculating(false);
-            } else {
-                // Otherwise reset and auto-calculate if both params provided
-                setCalendarData(null);
-                if (initialDate && initialLocation) {
-                    // Call calculate directly here to avoid dependency issues
-                    performCalculation(initialDate, initialLocation);
-                }
-            }
-        }
-    }, [isOpen, preservedCalendarData, initialDate, initialLocation]);
-
-    // Ref to track if component is mounted/valid for updates
-    const isCancelledRef = useRef(false);
 
     // Reset cancellation token on mount/update
     useEffect(() => {
@@ -83,7 +59,7 @@ function LunarCalendarModal({ isOpen, onClose, initialDate, initialLocation, onV
     }, [isOpen]);
 
     // Extracted calculation logic to avoid circular dependencies
-    const performCalculation = async (dateParam, locationParam) => {
+    const performCalculation = React.useCallback(async (dateParam, locationParam) => {
         // Explicitly start fresh
         isCancelledRef.current = false;
 
@@ -179,7 +155,29 @@ function LunarCalendarModal({ isOpen, onClose, initialDate, initialLocation, onV
             setError('An error occurred. Please try again.');
             setIsCalculating(false);
         }
-    };
+    }, [onCalendarCalculated]);
+
+    // Initialize state when modal opens with passed-through parameters
+    useEffect(() => {
+        if (isOpen) {
+            setModalDate(initialDate?.toISOString().split('T')[0] || '');
+            setModalLocationName(initialLocation?.name || '');
+            setError(null);
+
+            // If preserved data exists, use it directly
+            if (preservedCalendarData) {
+                console.log('[Modal] Using preserved calendar data');
+                setCalendarData(preservedCalendarData);
+                setIsCalculating(false);
+            } else {
+                // Otherwise reset and auto-calculate if both params provided
+                setCalendarData(null);
+                if (initialDate && initialLocation) {
+                    performCalculation(initialDate, initialLocation);
+                }
+            }
+        }
+    }, [isOpen, preservedCalendarData, initialDate, initialLocation, performCalculation]);
 
     // Close handler that ensures export cancellation
     const handleClose = () => {
