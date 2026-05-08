@@ -4,6 +4,7 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 import fs from 'fs/promises';
 import { MAJOR_CITIES } from '../src/data/cities.js';
+import { getCityPath } from '../src/utils/cityUrls.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -30,7 +31,7 @@ const ROUTES_TO_PRERENDER = [
     '/articles/shared-night-explained',
     '/articles/ramadan-guide',
     '/articles/eid-dates-guide',
-    ...MAJOR_CITIES.map(city => `/city/${encodeURIComponent(city.name)}`)
+    ...MAJOR_CITIES.map(city => getCityPath(city))
 ];
 
 async function startServer() {

@@ -2,6 +2,7 @@ import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { MAJOR_CITIES } from '../src/data/cities.js';
+import { getCityPath } from '../src/utils/cityUrls.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -60,7 +61,7 @@ async function generateSitemap() {
     // Add city routes dynamically
     MAJOR_CITIES.forEach((city) => {
         addRoute({
-            url: `/city/${encodeURIComponent(city.name)}`,
+            url: getCityPath(city),
             priority: '0.6',
             changefreq: 'weekly'
         });

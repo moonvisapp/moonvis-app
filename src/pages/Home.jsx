@@ -3,6 +3,7 @@ import MoonMap from '../components/MoonMap';
 import LunarCalendarModal from '../components/LunarCalendarModal';
 import AdBanner from '../components/AdBanner'; // Import AdBanner
 import { MAJOR_CITIES } from '../data/cities';
+import { createCitySlug } from '../utils/cityUrls';
 // import '../App.css'; // Removed as styles should still be available globally or we can import if needed
 
 function Home() {
@@ -331,7 +332,7 @@ function Home() {
                     ].map(city => (
                         <a
                             key={city}
-                            href={`/city/${encodeURIComponent(city)}`}
+                            href={`/city/${createCitySlug(city)}`}
                             style={{
                                 display: 'inline-block',
                                 padding: '4px 12px',

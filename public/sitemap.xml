@@ -2,541 +2,541 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://moonvis-app-mauve.vercel.app/</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://moonvis-app-mauve.vercel.app/about</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://moonvis-app-mauve.vercel.app/guide</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://moonvis-app-mauve.vercel.app/faq</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://moonvis-app-mauve.vercel.app/methodology</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://moonvis-app-mauve.vercel.app/contact</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://moonvis-app-mauve.vercel.app/cities</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://moonvis-app-mauve.vercel.app/privacy</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://moonvis-app-mauve.vercel.app/terms</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://moonvis-app-mauve.vercel.app/articles/ramadan-guide</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://moonvis-app-mauve.vercel.app/articles/eid-dates-guide</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://moonvis-app-mauve.vercel.app/articles/hijri-calendar-history</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://moonvis-app-mauve.vercel.app/articles/moon-sighting-committees</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://moonvis-app-mauve.vercel.app/articles/islamic-vs-gregorian-calendar</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://moonvis-app-mauve.vercel.app/articles/lunar-phases</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://moonvis-app-mauve.vercel.app/articles/moon-sighting-tips</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://moonvis-app-mauve.vercel.app/articles/shared-night-explained</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Abu%20Dhabi%2C%20UAE</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/abu-dhabi-uae</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Algiers%2C%20Algeria</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/algiers-algeria</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Amman%2C%20Jordan</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/amman-jordan</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Amsterdam%2C%20Netherlands</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/amsterdam-netherlands</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Ankara%2C%20Turkey</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/ankara-turkey</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Auckland%2C%20New%20Zealand</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/auckland-new-zealand</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Baghdad%2C%20Iraq</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/baghdad-iraq</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Bangalore%2C%20India</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/bangalore-india</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Bangkok%2C%20Thailand</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/bangkok-thailand</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Beijing%2C%20China</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/beijing-china</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Beirut%2C%20Lebanon</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/beirut-lebanon</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Berlin%2C%20Germany</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/berlin-germany</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Bogot%C3%A1%2C%20Colombia</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/bogota-colombia</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Brisbane%2C%20Australia</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/brisbane-australia</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Brussels%2C%20Belgium</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/brussels-belgium</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Buenos%20Aires%2C%20Argentina</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/buenos-aires-argentina</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Cairo%2C%20Egypt</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/cairo-egypt</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Cape%20Town%2C%20South%20Africa</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/cape-town-south-africa</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Casablanca%2C%20Morocco</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/casablanca-morocco</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Chennai%2C%20India</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/chennai-india</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Chicago%2C%20USA</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/chicago-usa</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Damascus%2C%20Syria</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/damascus-syria</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Delhi%2C%20India</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/delhi-india</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Dhaka%2C%20Bangladesh</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/dhaka-bangladesh</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Doha%2C%20Qatar</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/doha-qatar</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Dubai%2C%20UAE</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/dubai-uae</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Hong%20Kong</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/hong-kong</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Houston%2C%20USA</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/houston-usa</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Hyderabad%2C%20India</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/hyderabad-india</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Islamabad%2C%20Pakistan</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/islamabad-pakistan</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Istanbul%2C%20Turkey</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/istanbul-turkey</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Jakarta%2C%20Indonesia</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/jakarta-indonesia</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Jeddah%2C%20Saudi%20Arabia</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/jeddah-saudi-arabia</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Jerusalem</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/jerusalem</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Johannesburg%2C%20South%20Africa</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/johannesburg-south-africa</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Karachi%2C%20Pakistan</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/karachi-pakistan</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Khartoum%2C%20Sudan</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/khartoum-sudan</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Kolkata%2C%20India</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/kolkata-india</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Kuala%20Lumpur%2C%20Malaysia</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/kuala-lumpur-malaysia</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Kuwait%20City%2C%20Kuwait</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/kuwait-city-kuwait</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Lagos%2C%20Nigeria</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/lagos-nigeria</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Lahore%2C%20Pakistan</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/lahore-pakistan</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Lima%2C%20Peru</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/lima-peru</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/London%2C%20UK</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/london-uk</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Los%20Angeles%2C%20USA</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/los-angeles-usa</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Madrid%2C%20Spain</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/madrid-spain</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Manama%2C%20Bahrain</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/manama-bahrain</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Manila%2C%20Philippines</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/manila-philippines</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Mecca%2C%20Saudi%20Arabia</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/mecca-saudi-arabia</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Medina%2C%20Saudi%20Arabia</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/medina-saudi-arabia</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Melbourne%2C%20Australia</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/melbourne-australia</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Mexico%20City%2C%20Mexico</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/mexico-city-mexico</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Moscow%2C%20Russia</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/moscow-russia</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Mumbai%2C%20India</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/mumbai-india</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Muscat%2C%20Oman</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/muscat-oman</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Nairobi%2C%20Kenya</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/nairobi-kenya</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/New%20York%2C%20USA</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/new-york-usa</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Paris%2C%20France</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/paris-france</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Perth%2C%20Australia</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/perth-australia</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Rio%20de%20Janeiro%2C%20Brazil</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/rio-de-janeiro-brazil</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Riyadh%2C%20Saudi%20Arabia</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/riyadh-saudi-arabia</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Rome%2C%20Italy</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/rome-italy</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/S%C3%A3o%20Paulo%2C%20Brazil</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/sao-paulo-brazil</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Seoul%2C%20South%20Korea</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/seoul-south-korea</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Shanghai%2C%20China</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/shanghai-china</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Singapore</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/singapore</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Sydney%2C%20Australia</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/sydney-australia</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Tehran%2C%20Iran</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/tehran-iran</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Tokyo%2C%20Japan</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/tokyo-japan</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Toronto%2C%20Canada</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/toronto-canada</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Tripoli%2C%20Libya</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/tripoli-libya</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Tunis%2C%20Tunisia</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/tunis-tunisia</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://moonvis-app-mauve.vercel.app/city/Vienna%2C%20Austria</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://moonvis-app-mauve.vercel.app/city/vienna-austria</loc>
+    <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>

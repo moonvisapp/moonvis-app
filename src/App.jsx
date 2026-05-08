@@ -1,6 +1,7 @@
 import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import CookieBanner from './components/CookieBanner';
+import { SEOManager } from './components/SEOManager';
 import './App.css';
 
 // Lazy loading pages for better performance
@@ -28,6 +29,7 @@ const EidDatesGuide = lazy(() => import('./pages/articles/EidDatesGuide'));
 function App() {
   return (
     <Router>
+      <SEOManager />
       <div className="app-container">
         <header className="app-header">
           <h1>

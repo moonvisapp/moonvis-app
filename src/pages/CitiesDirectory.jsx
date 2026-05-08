@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { MAJOR_CITIES } from '../data/cities';
+import { getCityPath } from '../utils/cityUrls';
 
 function CitiesDirectory() {
     return (
@@ -18,7 +19,7 @@ function CitiesDirectory() {
                     {MAJOR_CITIES.map(city => (
                         <Link 
                             key={city.name} 
-                            to={`/city/${encodeURIComponent(city.name)}`}
+                            to={getCityPath(city)}
                             style={{
                                 padding: '15px',
                                 background: 'rgba(30, 41, 59, 0.5)',

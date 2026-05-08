@@ -1,8 +1,9 @@
-import React, { useMemo, useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import React, { useMemo, useState } from 'react';
+import { useParams, Link, Navigate } from 'react-router-dom';
 import MoonMap from '../components/MoonMap';
 import { MAJOR_CITIES } from '../data/cities';
-import { getMoonIllumination, getMoonTimes, getVisibility } from '../utils/astronomy';
+import { findCityBySlugOrName, getCityPath } from '../utils/cityUrls';
+import { getMoonIllumination, getVisibility } from '../utils/astronomy';
 
 // Regional context data for enhanced SEO content
 const REGION_CONTEXT = {
@@ -67,8 +68,7 @@ function getRegionKey(cityName) {
 
 const CityDetail = () => {
     const { cityName } = useParams();
-    // Find city case-insensitive to be robust
-    const city = MAJOR_CITIES.find(c => c.name.toLowerCase() === cityName?.toLowerCase());
+    const city = findCityBySlugOrName(cityName, MAJOR_CITIES);
 
     const [date] = useState(new Date());
 
@@ -101,8 +101,6 @@ const CityDetail = () => {
         // Extract just the city short name and country
         const parts = city.name.split(', ');
         const shortName = parts[0];
-        const country = parts[1] || '';
-
         return (
             <>
                 <h2 style={{ fontSize: '1.5rem', marginTop: '2rem' }}>Moon Visibility in {city.name}</h2>
@@ -169,7 +167,7 @@ const CityDetail = () => {
                         .map(c => (
                             <Link
                                 key={c.name}
-                                to={`/city/${encodeURIComponent(c.name)}`}
+                                to={getCityPath(c)}
                                 style={{
                                     display: 'inline-block',
                                     padding: '3px 10px',
@@ -200,6 +198,11 @@ const CityDetail = () => {
                 </div>
             </main>
         );
+    }
+
+    const canonicalCityPath = getCityPath(city);
+    if (`/city/${cityName}` !== canonicalCityPath) {
+        return <Navigate to={canonicalCityPath} replace />;
     }
 
     // We reuse the MoonMap but force the selected city
