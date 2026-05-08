@@ -74,6 +74,42 @@ async function runPrerender() {
     }
 
     const page = await browser.newPage();
+    await page.setRequestInterception(true);
+    page.on('request', (request) => {
+        const url = request.url();
+        if (
+            url.includes('pagead2.googlesyndication.com') ||
+            url.includes('googleads.g.doubleclick.net') ||
+            url.includes('googlesyndication.com/pagead') ||
+            url.includes('googletagservices.com') ||
+            url.includes('google.com/recaptcha')
+        ) {
+            request.abort();
+            return;
+        }
+        request.continue();
+    });
+
+    async function getCleanHtml() {
+        await page.evaluate(() => {
+            document
+                .querySelectorAll('script[src*="pagead2.googlesyndication.com/pagead/managed"], iframe[src*="googleads.g.doubleclick.net"], iframe[src*="google.com/recaptcha"], iframe#google_esf, ins.adsbygoogle-noablate, meta[http-equiv="origin-trial"]')
+                .forEach((element) => element.remove());
+
+            document.querySelectorAll('script[src*="pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"]').forEach((script) => {
+                script.removeAttribute('data-checked-head');
+            });
+
+            document.querySelectorAll('ins.adsbygoogle').forEach((slot) => {
+                slot.removeAttribute('data-adsbygoogle-status');
+                slot.removeAttribute('data-ad-status');
+                slot.removeAttribute('data-ad-hi');
+                slot.querySelectorAll('iframe, [id^="aswift_"]').forEach((element) => element.remove());
+            });
+        });
+
+        return page.evaluate(() => document.documentElement.outerHTML);
+    }
 
     // First, prerender the home page (which has the SEO content)
     console.log(`[Prerender] Visiting home page http://localhost:${PORT}/ ...`);
@@ -88,7 +124,7 @@ async function runPrerender() {
     }
 
     console.log('[Prerender] Capturing home page HTML snapshot...');
-    const homeHtml = await page.evaluate(() => document.documentElement.outerHTML);
+    const homeHtml = await getCleanHtml();
     const homeFile = path.join(DIST_DIR, 'index.html');
     const finalHomeHtml = `<!DOCTYPE html>\n${homeHtml}`;
     await fs.writeFile(homeFile, finalHomeHtml, 'utf8');
@@ -110,7 +146,7 @@ async function runPrerender() {
             // Wait for content to render
             await page.waitForSelector('.content-page, .app-main', { timeout: 8000 });
 
-            const html = await page.evaluate(() => document.documentElement.outerHTML);
+            const html = await getCleanHtml();
             const finalHtml = `<!DOCTYPE html>\n${html}`;
 
             // Create directory if it doesn't exist
