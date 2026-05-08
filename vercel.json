@@ -29,6 +29,9 @@
     }
   ],
   "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+    {
+      "source": "/city/:cityName((?![a-z0-9-]+$).*)",
+      "destination": "/api/city-redirect?cityName=:cityName"
+    }
   ]
 }

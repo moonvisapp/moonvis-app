@@ -1,5 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { Breadcrumbs } from './components/Breadcrumbs';
 import CookieBanner from './components/CookieBanner';
 import { SEOManager } from './components/SEOManager';
 import './App.css';
@@ -52,6 +53,8 @@ function App() {
             <Link to="/cities">Locations</Link>
           </nav>
         </header>
+
+        <Breadcrumbs />
 
         <Suspense fallback={<div className="loader">Loading...</div>}>
           <Routes>

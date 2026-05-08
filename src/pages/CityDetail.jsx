@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import MoonMap from '../components/MoonMap';
 import { MAJOR_CITIES } from '../data/cities';
@@ -69,8 +69,6 @@ function getRegionKey(cityName) {
 const CityDetail = () => {
     const { cityName } = useParams();
     const city = findCityBySlugOrName(cityName, MAJOR_CITIES);
-
-    const [date] = useState(new Date());
 
     // SEO Content Generation
     const cityContent = useMemo(() => {

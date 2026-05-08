@@ -55,6 +55,29 @@ body {
   margin: 0.5rem 0;
 }
 
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: -1rem;
+  color: #94a3b8;
+  font-size: 0.85rem;
+}
+
+.breadcrumbs a {
+  color: #38bdf8;
+  text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb-separator {
+  color: #475569;
+}
+
 .subtitle {
   font-weight: 500;
   color: #cbd5e1 !important;
