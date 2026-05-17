@@ -1,4 +1,5 @@
 import React from 'react';
+import AdBanner from '../components/AdBanner';
 
 const About = () => {
     return (
@@ -144,6 +145,7 @@ const About = () => {
                         نرحب بملاحظاتكم واقتراحاتكم واستفساراتكم. سواء كنتم تمثلون لجنة رؤية الهلال أو منظمة إسلامية أو فلكيين هواة، يسعدنا التواصل معكم.
                     </p>
                 </section>
+                <AdBanner dataAdSlot="5502376796" style={{ marginTop: '40px', marginBottom: '20px', maxWidth: '800px', marginLeft: 'auto', marginRight: 'auto' }} />
             </div>
         </main>
     );

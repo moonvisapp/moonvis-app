@@ -1,4 +1,5 @@
 import React from 'react';
+import AdBanner from '../../components/AdBanner';
 import { Link } from 'react-router-dom';
 
 const LunarPhasesExplained = () => {
@@ -96,6 +97,7 @@ const LunarPhasesExplained = () => {
                         Use <Link to="/" style={{ color: '#38bdf8' }}>Moon Visibility Explorer</Link> to see where the next lunar crescent will be visible worldwide. Learn more about <Link to="/articles/moon-sighting-tips" style={{ color: '#38bdf8' }}>tips for spotting the crescent</Link> or how <Link to="/articles/moon-sighting-committees" style={{ color: '#38bdf8' }}>sighting committees</Link> use this data.
                     </p>
                 </section>
+                <AdBanner dataAdSlot="5502376796" style={{ marginTop: '40px', marginBottom: '20px', maxWidth: '800px', marginLeft: 'auto', marginRight: 'auto' }} />
             </div>
         </main>
     );

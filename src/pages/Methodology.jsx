@@ -1,4 +1,5 @@
 import React from 'react';
+import AdBanner from '../components/AdBanner';
 
 const Methodology = () => {
     return (
@@ -230,6 +231,7 @@ const Methodology = () => {
                         يقوم مستكشف رؤية القمر بجميع الحسابات في متصفحك محلياً. لا توجد خوارزميات مخفية خلف أي خادم. يمكن التحقق من نتائجنا بشكل مستقل من قبل أي فلكي مؤهل.
                     </p>
                 </section>
+                <AdBanner dataAdSlot="5502376796" style={{ marginTop: '40px', marginBottom: '20px', maxWidth: '800px', marginLeft: 'auto', marginRight: 'auto' }} />
             </div>
         </main>
     );

@@ -1,4 +1,5 @@
 import React from 'react';
+import AdBanner from '../components/AdBanner';
 
 const Guide = () => {
     return (
@@ -208,6 +209,7 @@ const Guide = () => {
                         نصائح لرؤية ناجحة للهلال: تحقق من توقعات الطقس، اصل مبكراً قبل الغروب بـ 15-20 دقيقة، انظر في الاتجاه الصحيح بالقرب من نقطة الغروب، استخدم المنظار إن أمكن، وتجنب التلوث الضوئي.
                     </p>
                 </section>
+                <AdBanner dataAdSlot="5502376796" style={{ marginTop: '40px', marginBottom: '20px', maxWidth: '800px', marginLeft: 'auto', marginRight: 'auto' }} />
             </div>
         </main>
     );

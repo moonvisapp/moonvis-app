@@ -1,4 +1,5 @@
 import React from 'react';
+import AdBanner from '../../components/AdBanner';
 import { Link } from 'react-router-dom';
 
 const HijriCalendarHistory = () => {
@@ -133,6 +134,7 @@ const HijriCalendarHistory = () => {
                         Want to see when each Islamic month begins for your city? Use our <Link to="/" style={{ color: '#38bdf8' }}>Moon Visibility Explorer</Link> to generate a complete 12-month lunar calendar, or read our <Link to="/guide" style={{ color: '#38bdf8' }}>User Guide</Link> to learn how.
                     </p>
                 </section>
+                <AdBanner dataAdSlot="5502376796" style={{ marginTop: '40px', marginBottom: '20px', maxWidth: '800px', marginLeft: 'auto', marginRight: 'auto' }} />
             </div>
         </main>
     );

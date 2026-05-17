@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import AdBanner from '../components/AdBanner';
 import { MAJOR_CITIES } from '../data/cities';
 import { getCityPath } from '../utils/cityUrls';
 
@@ -49,6 +50,7 @@ function CitiesDirectory() {
                         </Link>
                     ))}
                 </div>
+                <AdBanner dataAdSlot="5502376796" style={{ marginTop: '40px', marginBottom: '20px', maxWidth: '800px', marginLeft: 'auto', marginRight: 'auto' }} />
             </div>
         </main>
     );

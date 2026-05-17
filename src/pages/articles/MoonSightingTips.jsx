@@ -1,4 +1,5 @@
 import React from 'react';
+import AdBanner from '../../components/AdBanner';
 import { Link } from 'react-router-dom';
 
 const MoonSightingTips = () => {
@@ -105,6 +106,7 @@ const MoonSightingTips = () => {
                         Before heading out, check <Link to="/" style={{ color: '#38bdf8' }}>Moon Visibility Explorer</Link> for the predicted crescent visibility at your location. Learn about <Link to="/articles/lunar-phases" style={{ color: '#38bdf8' }}>lunar phases</Link> to understand the astronomy, or read about how <Link to="/articles/moon-sighting-committees" style={{ color: '#38bdf8' }}>moon sighting committees</Link> coordinate observations worldwide.
                     </p>
                 </section>
+                <AdBanner dataAdSlot="5502376796" style={{ marginTop: '40px', marginBottom: '20px', maxWidth: '800px', marginLeft: 'auto', marginRight: 'auto' }} />
             </div>
         </main>
     );

@@ -1,4 +1,5 @@
 import React from 'react';
+import AdBanner from '../../components/AdBanner';
 import { Link } from 'react-router-dom';
 
 const SharedNightExplained = () => {
@@ -152,6 +153,7 @@ const SharedNightExplained = () => {
                         To see shared night in action, <Link to="/" style={{ color: '#38bdf8' }}>generate a lunar calendar</Link> for any city and look for months marked with the shared night indicator. For more on the science behind visibility prediction, visit our <Link to="/methodology" style={{ color: '#38bdf8' }}>Methodology</Link> page.
                     </p>
                 </section>
+                <AdBanner dataAdSlot="5502376796" style={{ marginTop: '40px', marginBottom: '20px', maxWidth: '800px', marginLeft: 'auto', marginRight: 'auto' }} />
             </div>
         </main>
     );

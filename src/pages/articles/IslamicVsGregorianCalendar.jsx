@@ -1,4 +1,5 @@
 import React from 'react';
+import AdBanner from '../../components/AdBanner';
 import { Link } from 'react-router-dom';
 
 const IslamicVsGregorianCalendar = () => {
@@ -107,6 +108,7 @@ const IslamicVsGregorianCalendar = () => {
                         Need to know when a specific Islamic month starts in the Gregorian calendar? <Link to="/" style={{ color: '#38bdf8' }}>Moon Visibility Explorer</Link> can generate a complete Hijri-to-Gregorian calendar for your city. Check our <Link to="/faq" style={{ color: '#38bdf8' }}>FAQ</Link> for more details, or read about the <Link to="/articles/hijri-calendar-history" style={{ color: '#38bdf8' }}>history of the Hijri calendar</Link>.
                     </p>
                 </section>
+                <AdBanner dataAdSlot="5502376796" style={{ marginTop: '40px', marginBottom: '20px', maxWidth: '800px', marginLeft: 'auto', marginRight: 'auto' }} />
             </div>
         </main>
     );

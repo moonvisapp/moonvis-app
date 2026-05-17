@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
+import AdBanner from '../components/AdBanner';
 import MoonMap from '../components/MoonMap';
 import { MAJOR_CITIES } from '../data/cities';
 import { findCityBySlugOrName, getCityPath } from '../utils/cityUrls';
@@ -232,6 +233,7 @@ const CityDetail = () => {
                         <Link to="/" className="back-link" style={{ color: '#38bdf8' }}>← Back to Global Map</Link>
                     </div>
                 </div>
+                <AdBanner dataAdSlot="5502376796" style={{ marginTop: '40px', marginBottom: '20px', maxWidth: '800px', marginLeft: 'auto', marginRight: 'auto' }} />
             </div>
         </main>
     );

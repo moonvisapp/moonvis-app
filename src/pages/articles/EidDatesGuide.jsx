@@ -1,4 +1,5 @@
 import React from 'react';
+import AdBanner from '../../components/AdBanner';
 import { Link } from 'react-router-dom';
 
 const EidDatesGuide = () => {
@@ -126,6 +127,7 @@ const EidDatesGuide = () => {
                         Generate a complete Hijri calendar for your city now and get predicted dates for both Eids, Ramadan, and all other Islamic months. <Link to="/" style={{ color: '#38bdf8' }}>Open Moon Visibility Explorer →</Link>
                     </p>
                 </section>
+                <AdBanner dataAdSlot="5502376796" style={{ marginTop: '40px', marginBottom: '20px', maxWidth: '800px', marginLeft: 'auto', marginRight: 'auto' }} />
             </div>
         </main>
     );

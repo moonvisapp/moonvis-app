@@ -1,4 +1,5 @@
 import React from 'react';
+import AdBanner from '../../components/AdBanner';
 import { Link } from 'react-router-dom';
 
 const MoonSightingCommittees = () => {
@@ -96,6 +97,7 @@ const MoonSightingCommittees = () => {
                         Our tool provides the scientific data that moon sighting committees need. By showing <Link to="/" style={{ color: '#38bdf8' }}>exactly where the crescent is predicted to be visible</Link> on any given date, committees can plan their observation efforts more effectively, validate witness testimonies against astronomical reality, and communicate their decisions to the public with scientific backing. Visit our <Link to="/methodology" style={{ color: '#38bdf8' }}>Methodology page</Link> to learn about the Odeh V-criterion that powers these predictions.
                     </p>
                 </section>
+                <AdBanner dataAdSlot="5502376796" style={{ marginTop: '40px', marginBottom: '20px', maxWidth: '800px', marginLeft: 'auto', marginRight: 'auto' }} />
             </div>
         </main>
     );

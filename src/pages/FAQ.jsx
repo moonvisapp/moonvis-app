@@ -1,4 +1,5 @@
 import React from 'react';
+import AdBanner from '../components/AdBanner';
 
 const faqData = [
     {
@@ -173,6 +174,7 @@ const FAQ = () => {
                         إذا لم تجد إجابة سؤالك أعلاه، يرجى التواصل معنا على moonvisapp@gmail.com
                     </p>
                 </section>
+                <AdBanner dataAdSlot="5502376796" style={{ marginTop: '40px', marginBottom: '20px', maxWidth: '800px', marginLeft: 'auto', marginRight: 'auto' }} />
             </div>
         </main>
     );
