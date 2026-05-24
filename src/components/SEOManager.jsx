@@ -3,10 +3,19 @@ import { useLocation } from 'react-router-dom';
 import { SITE_URL, formatPageTitle, getJsonLdForPath, getSeoForPath } from '../utils/seo';
 
 function setMeta(selector, attr, value) {
-    const element = document.head.querySelector(selector);
-    if (element) {
-        element.setAttribute(attr, value);
+    let element = document.head.querySelector(selector);
+    if (!element) {
+        element = document.createElement('meta');
+        // Parse the selector to determine what attributes to set (e.g., name or property)
+        const match = selector.match(/^meta\[(name|property)="([^"]+)"\]$/);
+        if (match) {
+            element.setAttribute(match[1], match[2]);
+            document.head.appendChild(element);
+        } else {
+            return; // Fallback if selector is complex
+        }
     }
+    element.setAttribute(attr, value);
 }
 
 function setCanonical(url) {
